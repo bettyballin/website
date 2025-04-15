@@ -1,0 +1,75 @@
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Light grey background */
+    color: #333; /* Dark grey text */
+}
+
+header {
+    background-color: #0077cc; /* Azure Blue */
+    color: #ffffff; /* White text */
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+}
+
+section {
+    padding: 20px;
+    margin: 20px auto;
+    background-color: #ffffff; /* White background for sections */
+    max-width: 800px; /* Limit content width */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 5px;
+}
+
+h2 {
+    color: #005fa3; /* Darker Azure Blue for headings */
+    border-bottom: 2px solid #e0f7ff; /* Light sea blue underline */
+    padding-bottom: 5px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+ul ul {
+    margin-left: 20px;
+    list-style: disc;
+}
+
+a {
+    color: #0077cc; /* Azure Blue for links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#contact p {
+    margin-bottom: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    margin-top: 30px;
+    background-color: #e0f7ff; /* Light Sea Blue */
+    color: #333;
+    font-size: 0.9rem;
+}
