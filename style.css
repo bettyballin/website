@@ -1,13 +1,13 @@
-  body {
+body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f9f9f9;
     color: #222;
   }
   header {
-    background-color: #0077b6; /* sea blue */
+    background-color: #628FB8;
     color: white;
-    padding: 2rem;
+    padding: 1rem;
     text-align: center;
     position: relative;
   }
@@ -19,27 +19,71 @@
     margin-top: 0.5rem;
     font-size: 1.2rem;
   }
-  section {
+
+  .tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+
+  .tab {
+    background-color: #628FB8;
+    color: white;
+    font-size: 1.2rem;
+    padding: 1.5rem 3rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s;
+    border-radius: 5px;
+    border: none;
+  }
+
+  .tab:hover,
+  .tab.active {
+    background-color: #5078A1; /* etwas dunkler beim Hover */
+  }
+
+  .tab-separator {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.5rem;
+    margin: 0 1rem;
+  }
+
+  .tab-content {
+    display: none;
     max-width: 800px;
     margin: 2rem auto;
+    background: #f9f9f9;
+    color: #222;
     padding: 0 1rem;
   }
+
+  .tab-content.active {
+    display: block;
+  }
+
   h2 {
-    color: #0077b6;
+    color: #628FB8;
     margin-bottom: 0.5rem;
   }
   a {
-    color: #0077b6;
+    color: #628FB8;
     text-decoration: none;
   }
   a:hover {
     text-decoration: underline;
   }
   footer {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
     text-align: center;
     padding: 2rem;
     background-color: #eee;
-    margin-top: 3rem;
+    font-size: 0.9rem;
+    color: #628FB8;
   }
   img.profile-pic {
     width: 250px;
@@ -69,20 +113,20 @@
   }
   .impressum{
       margin-left: 20px;
-      background-color: #0077b6; 
+      background-color: #628FB8; 
       color: white;
       padding: 0.5rem 1rem; 
       border-radius: 5px; 
       text-decoration: none; 
-      border: 1px solid #0077b6; 
+      border: 1px solid #628FB8; 
       font-weight: bold;
   }
   #lang-toggle {
     position: absolute; 
-    top: 1rem; 
-    right: 1rem; 
+    top: 0.25rem; 
+    right: 0.25rem; 
     background: white; 
-    color: #0077b6; 
+    color: #628FB8; 
     padding: 0.5rem 1rem; 
     border: none; 
     border-radius: 5px; 

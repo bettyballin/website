@@ -13,43 +13,39 @@
     <p data-key="headerText">Building secure, intelligent software systems.</p>
     <img src="profile.jpg" alt="Profile picture" class="profile-pic">
     <button id="lang-toggle">Deutsch</button>
+    <nav class="tabs">
+      <div class="tab active" onclick="showTab('portfolio')">Portfolio</div>
+      <div class="tab-separator">|</div>
+      <div class="tab" onclick="showTab('zertifikate')" data-key="certificates">Zertificates</div>
+      <div class="tab-separator">|</div>
+      <div class="tab" onclick="showTab('technologien')" data-key="technologies">Technologies</div>
+      <div class="tab-separator">|</div>
+      <div class="tab" onclick="showTab('about')" data-key="aboutMe">About me</div>
+      <div class="tab-separator">|</div>
+      <div class="tab" onclick="showTab('contact')" data-key="contact">Contact</div>
+    </nav>
   </header>
 
-  <section>
-    <h2 data-key="aboutMe">About Me</h2>
-    <p data-key="aboutText">I am an IT freelancer with a strong academic and professional background. I hold a Master's degree from TU Darmstadt and have more than 5 years of working experience, mostly as an IT consultant at Software AG and as a researcher on AI and cybersecurity at Fraunhofer SIT. My work spans IT consulting, AI research, and software security.</p>
-  </section>
-
-  <section>
-    <h2 data-key="whatIDo">What I Do</h2>
-    <ul>
-      <li data-key="whatIDo1">Software Consulting – Architecture, development, and optimization</li>
-      <li data-key="whatIDo2">AI & ML Projects – Prototypes, pipelines, evaluations</li>
-      <li data-key="whatIDo3">Software Security – Threat modeling, secure design</li>
-      <li data-key="whatIDo4">Research & Writing – Papers, whitepapers, documentation</li>
-    </ul>
-  </section>
-
-  <section>
+  <div id="portfolio" class="tab-content active">
     <h2>Portfolio</h2>
     <div class="portfolio-grid">
-      <div class="portfolio-item">
-        <a href="https://wildeholzschoenheiten.de">
-            <img src="website.gif" alt="Project screenshot" class="portfolio-pic">
-            <p data-key="project">🔗Website project</p>
-        </a>
+        <div class="portfolio-item">
+          <a href="https://wildeholzschoenheiten.de">
+              <img src="website.gif" alt="Project screenshot" class="portfolio-pic">
+              <p data-key="project">🔗Website project</p>
+          </a>
+        </div>
+        <div class="portfolio-item">
+          <a href="game/flappybird.html?fromHomepage=true">
+            <img src="flappybird.gif" alt="Game screenshot" class="portfolio-pic">
+            <p><a href="https://github.com/bettyballin">🎮GitHub: Mini Games</a></p>
+          </a>
+        </div>
       </div>
-      <div class="portfolio-item">
-        <a href="flappybird.html?fromHomepage=true">
-          <img src="flappybird.gif" alt="Game screenshot" class="portfolio-pic">
-          <p><a href="https://github.com/bettyballin">🎮GitHub: Mini Games</a></p>
-        </a>
-      </div>
-    </div>
-  </section>
+  </div>
 
-  <section>
-    <h2 data-key="certificates">Certificates and Awards</h2>
+  <div id="zertifikate" class="tab-content" style="display:none">
+    <h2 data-key="certificates">Certificates and Rewards</h2>
     <ul>
       <li><strong>T.I.S.P. TeleTrust Information Security Professional</strong><br>
       TÜV Rheinland Group – 06/2023</li>
@@ -58,29 +54,44 @@
       <li><strong>webMethods Certified ESB Developer</strong><br>
       Software AG – 05/2018</li>
     </ul>
-  </section>
+  </div>
 
-  <section>
+  <div id="technologien" class="tab-content" style="display:none">
     <h2 data-key="technologies">Technologies</h2>
     <p data-key="techDesc">As an experienced IT consultant and researcher, I have worked with a broad range of technologies in software development, system integration, artificial intelligence, and IT security:</p>
-    <ul>
-      <li><strong data-key="techDesc1">Programming Languages:</strong> Java, Python, C, C++, JavaScript, SQL</li>
-      <li><strong data-key="techDesc2">Web Development:</strong> HTML, CSS, jQuery, Angular 8, Flask, Flask, Flutter</li>
-      <li><strong data-key="techDesc3">Web & Application Services:</strong> REST, SOAP, webMethods, Webservices, WSDL</li>
-      <li><strong data-key="techDesc4">Frameworks & Tools:</strong> Android Studio, Docker, Docker-Produkte, JDBC, DevOps</li>
-      <li><strong data-key="techDesc5">Databases:</strong> Oracle, MongoDB</li>
-      <li><strong data-key="techDesc6">Development Approaches:</strong> Agile Methods, IT-Consulting, GUI-Development, BPMN, Flow</li>
-      <li><strong data-key="techDesc7">AI & Machine Learning:</strong> Deep Learning, Reinforcement Learning, TensorFlow, PyTorch, Computer Vision, Natural Language Processing (NLP), Anomaly Detection</li>
-      <li><strong data-key="techDesc8">Security:</strong> Cybersecurity,  Information Security, Pentesting, Vulnerability Assessment</li>
-      <li><strong data-key="techDesc9">Operating Systems:</strong> Windows, Linux</li>
-    </ul>
-  </section>
-  
-  <section>
-    <h2 data-key="contact">Contact</h2>
-    <p>Email: <a href="mailto:betty.ballin@yahoo.de">betty.ballin@yahoo.de</a></p>
-    <p><a href="https://de.linkedin.com/in/bettina-ballin-792b5b167">LinkedIn</a> / <a href="https://github.com/bettyballin">GitHub</a></p>
-  </section>
+      <ul>
+        <li><strong data-key="techDesc1">Programming Languages:</strong> Java, Python, C, C++, JavaScript, SQL</li>
+        <li><strong data-key="techDesc2">Web Development:</strong> HTML, CSS, jQuery, Angular 8, Flask, Flask, Flutter</li>
+        <li><strong data-key="techDesc3">Web & Application Services:</strong> REST, SOAP, webMethods, Webservices, WSDL</li>
+        <li><strong data-key="techDesc4">Frameworks & Tools:</strong> Android Studio, Docker, Docker-Produkte, JDBC, DevOps</li>
+        <li><strong data-key="techDesc5">Databases:</strong> Oracle, MongoDB</li>
+        <li><strong data-key="techDesc6">Development Approaches:</strong> Agile Methods, IT-Consulting, GUI-Development, BPMN, Flow</li>
+        <li><strong data-key="techDesc7">AI & Machine Learning:</strong> Deep Learning, Reinforcement Learning, TensorFlow, PyTorch, Computer Vision, Natural Language Processing (NLP), Anomaly Detection</li>
+        <li><strong data-key="techDesc8">Security:</strong> Cybersecurity,  Information Security, Pentesting, Vulnerability Assessment</li>
+        <li><strong data-key="techDesc9">Operating Systems:</strong> Windows, Linux</li>
+      </ul>
+  </div>
+
+  <div id="about" class="tab-content" style="display:none">
+    <section>
+      <h2 data-key="aboutMe">About Me</h2>
+      <p data-key="aboutText">I am an IT freelancer with a strong academic and professional background. I hold a Master's degree from TU Darmstadt and have more than 5 years of working experience, mostly as an IT consultant at Software AG and as a researcher on AI and cybersecurity at Fraunhofer SIT. My work spans IT consulting, AI research, and software security.</p>
+      <ul>
+        <li data-key="whatIDo1">Software Consulting – Architecture, development, and optimization</li>
+        <li data-key="whatIDo2">AI & ML Projects – Prototypes, pipelines, evaluations</li>
+        <li data-key="whatIDo3">Software Security – Threat modeling, secure design</li>
+        <li data-key="whatIDo4">Research & Writing – Papers, whitepapers, documentation</li>
+      </ul>
+    </section>
+  </div>
+
+  <div id="contact" class="tab-content" style="display:none">
+    <section>
+      <h2 data-key="contact">Contact</h2>
+      <p>Email: <a href="mailto:betty.ballin@yahoo.de">betty.ballin@yahoo.de</a></p>
+      <p><a href="https://de.linkedin.com/in/bettina-ballin-792b5b167">LinkedIn</a> / <a href="https://github.com/bettyballin">GitHub</a></p>
+    </section>
+  </div>
 
   <footer>
     &copy; 2025 Bettina Ballin <a href="impressum.html" class="impressum">Impressum</a>

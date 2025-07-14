@@ -75,42 +75,55 @@ const translations = {
     }
 };
 
-  // Get language from URL
-  function getLangFromURL() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('lang') === 'de' ? 'de' : 'en'; // default to 'en'
-  }
+// Get language from URL
+function getLangFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('lang') === 'de' ? 'de' : 'en'; // default to 'en'
+}
 
-  // Set translated content
-  function setLanguage(lang) {
-    const trans = translations[lang];
-    document.querySelectorAll('[data-key]').forEach(el => {
-      const key = el.getAttribute('data-key');
-      if (trans[key]) el.textContent = trans[key];
-    });
-    document.getElementById('lang-toggle').textContent = trans.toggleLang;
-  }
-
-  // Handle button click: update URL with new lang param
-  document.addEventListener('DOMContentLoaded', () => {
-    const currentLang = getLangFromURL();
-    setLanguage(currentLang);
-
-    // Update all internal links to preserve ?lang=...
-    document.querySelectorAll('a[href]').forEach(link => {
-        const url = new URL(link.href, window.location.href);
-
-        // Only adjust links to same origin and not external ones
-        if (url.origin === window.location.origin && !url.searchParams.has('lang')) {
-            url.searchParams.set('lang', currentLang);
-            link.href = url.toString();
-        }
-    });
-
-    document.getElementById('lang-toggle').addEventListener('click', () => {
-      const newLang = currentLang === 'en' ? 'de' : 'en';
-      const url = new URL(window.location);
-      url.searchParams.set('lang', newLang);
-      window.location.href = url.toString(); // reload with new lang param
-    });      
+// Set translated content
+function setLanguage(lang) {
+  const trans = translations[lang];
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const key = el.getAttribute('data-key');
+    if (trans[key]) el.textContent = trans[key];
   });
+  document.getElementById('lang-toggle').textContent = trans.toggleLang;
+}
+
+function showTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(function(content) {
+    content.classList.remove('active');
+    content.style.display = 'none';
+  });
+  document.getElementById(tabId).classList.add('active');
+  document.getElementById(tabId).style.display = 'block';
+  document.querySelectorAll('.tab').forEach(function(tab) {
+    tab.classList.remove('active');
+  });
+  event.target.classList.add('active');
+}
+
+// Handle button click: update URL with new lang param
+document.addEventListener('DOMContentLoaded', () => {
+  const currentLang = getLangFromURL();
+  setLanguage(currentLang);
+
+  // Update all internal links to preserve ?lang=...
+  document.querySelectorAll('a[href]').forEach(link => {
+      const url = new URL(link.href, window.location.href);
+
+      // Only adjust links to same origin and not external ones
+      if (url.origin === window.location.origin && !url.searchParams.has('lang')) {
+          url.searchParams.set('lang', currentLang);
+          link.href = url.toString();
+      }
+  });
+
+  document.getElementById('lang-toggle').addEventListener('click', () => {
+    const newLang = currentLang === 'en' ? 'de' : 'en';
+    const url = new URL(window.location);
+    url.searchParams.set('lang', newLang);
+    window.location.href = url.toString(); // reload with new lang param
+  });      
+});
