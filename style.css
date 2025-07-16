@@ -5,7 +5,7 @@ body {
     color: #222;
   }
   header {
-    background-color: #628FB8;
+    background-color: #4CAFB2;
     color: white;
     padding: 1rem;
     text-align: center;
@@ -18,6 +18,12 @@ body {
   header p {
     margin-top: 0.5rem;
     font-size: 1.2rem;
+    line-height: 0.8;
+  }
+  header .slogan {
+    /* background-color: white;
+    color: #4CAFB2; */
+    font-family: 'Great Vibes', cursive;
   }
 
   .tabs {
@@ -29,7 +35,7 @@ body {
   }
 
   .tab {
-    background-color: #628FB8;
+    background-color: #4CAFB2;
     color: white;
     font-size: 1.2rem;
     padding: 1.5rem 3rem;
@@ -42,7 +48,7 @@ body {
 
   .tab:hover,
   .tab.active {
-    background-color: #5078A1; /* etwas dunkler beim Hover */
+    background-color: #3B9EA5; /* 4CAFB2 etwas dunkler beim Hover #628FB8*/
   }
 
   .tab-separator {
@@ -65,11 +71,11 @@ body {
   }
 
   h2 {
-    color: #628FB8;
+    color: #4CAFB2;
     margin-bottom: 0.5rem;
   }
   a {
-    color: #628FB8;
+    color: #4CAFB2;
     text-decoration: none;
   }
   a:hover {
@@ -83,7 +89,7 @@ body {
     padding: 2rem;
     background-color: #eee;
     font-size: 0.9rem;
-    color: #628FB8;
+    color: #4CAFB2;
   }
   img.profile-pic {
     width: 250px;
@@ -113,12 +119,12 @@ body {
   }
   .impressum{
       margin-left: 20px;
-      background-color: #628FB8; 
+      background-color: #4CAFB2; 
       color: white;
       padding: 0.5rem 1rem; 
       border-radius: 5px; 
       text-decoration: none; 
-      border: 1px solid #628FB8; 
+      border: 1px solid #4CAFB2; 
       font-weight: bold;
   }
   #lang-toggle {
@@ -126,10 +132,80 @@ body {
     top: 0.25rem; 
     right: 0.25rem; 
     background: white; 
-    color: #628FB8; 
+    color: #4CAFB2; 
     padding: 0.5rem 1rem; 
     border: none; 
-    border-radius: 5px; 
-    font-weight: bold; 
+    border-radius: 5px;
+    font-weight: bold;
     cursor: pointer;
+  }
+
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    .tab-content {
+      max-width: 100%;
+    }
+    .portfolio-item {
+      width: 100%;
+    }
+    img.profile-pic {
+      width: 50%;
+      height: auto;
+    }
+    .portfolio-pic {
+      height: auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .tabs {
+      flex-direction: column;
+    }
+    .tab {
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+    }
+    .tab-separator {
+      display: none;
+    }
+  }
+  
+  #lang-toggle {
+      position: absolute;
+      top: 0.25rem;
+      right: 0.25rem;
+      opacity: 0.8;
+      cursor: pointer;
+  }
+  
+  #flag-icon {
+      width: 30px;
+      height: 20px;
+      border-radius: 3px;
+      vertical-align: middle;
+  }
+  
+  #lang-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      display: none;
+  }
+  
+  #lang-toggle:hover #lang-dropdown {
+      display: block;
+  }
+  
+  #lang-dropdown a {
+      display: block;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      color: #4CAFB2;
+  }
+  
+  #lang-dropdown a:hover {
+      background-color: #eee;
   }

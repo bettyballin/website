@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <title>Bettina Ballin – IT Freelancer</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -10,9 +11,15 @@
   <header>
     <h1>Bettina Ballin</h1>
     <p data-key="header">M.Sc. Informatik – IT Consultant & Researcher</p>
-    <p data-key="headerText">Building secure, intelligent software systems.</p>
+    <p class="slogan">Creating secure and elegant solutions</p>
     <img src="profile.jpg" alt="Profile picture" class="profile-pic">
-    <button id="lang-toggle">Deutsch</button>
+    <div id="lang-toggle">
+        <img src="flags/de.svg" alt="Deutsch" id="flag-icon">
+        <div id="lang-dropdown">
+            <a href="?lang=de">Deutsch</a>
+            <a href="?lang=en">English</a>
+        </div>
+    </div>
     <nav class="tabs">
       <div class="tab active" onclick="showTab('portfolio')">Portfolio</div>
       <div class="tab-separator">|</div>

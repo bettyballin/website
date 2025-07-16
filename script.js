@@ -3,7 +3,6 @@ document.documentElement.lang = getLangFromURL();
 const translations = {
     de: {
         header: "M.Sc. Informatik – IT Beratung & Forschung",
-        headerText: "Entwicklung zuverlässiger und intelligenter Softwarelösungen.",
         aboutMe: "Über mich",
         aboutText: "Ich arbeite als IT-Freelancerin mit fundierter akademischer und beruflicher Erfahrung. Mit einem Masterabschluss der TU Darmstadt und über fünf Jahren Berufserfahrung, insbesondere als IT-Beraterin bei der Software AG und als Forscherin am Fraunhofer SIT, bringe ich fundiertes Know-how in den Bereichen Künstliche Intelligenz und Cybersicherheit mit.",        
         whatIDo: "Meine Arbeit",
@@ -39,7 +38,6 @@ const translations = {
     },
     en: {
         header: "M.Sc. Informatik – IT Consultant & Researcher",
-        headerText: "Building secure, intelligent software systems.",
         aboutMe: "About Me",
         aboutText: "I am an IT freelancer with a strong academic and professional background. I hold a Master's degree from TU Darmstadt and have more than 5 years of working experience, mostly as an IT consultant at Software AG and as a researcher on AI and cybersecurity at Fraunhofer SIT. My work spans IT consulting, AI research, and software security.",
         whatIDo: "What I Do",
@@ -87,9 +85,11 @@ function setLanguage(lang) {
   document.querySelectorAll('[data-key]').forEach(el => {
     const key = el.getAttribute('data-key');
     if (trans[key]) el.textContent = trans[key];
-  });
-  document.getElementById('lang-toggle').textContent = trans.toggleLang;
-}
+    });
+    //document.getElementById('lang-toggle').textContent = trans.toggleLang;
+    document.getElementById('flag-icon').src = `flags/${lang}.svg`;
+    document.getElementById('flag-icon').alt = lang;
+  }
 
 function showTab(tabId) {
   document.querySelectorAll('.tab-content').forEach(function(content) {
