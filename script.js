@@ -28,6 +28,10 @@ const translations = {
         techDesc8: "Sicherheit:",
         techDesc9: "Betriebssysteme:",
         back: "Zurück zur Startseite",
+        touch: "Get in Touch",        
+        contactNote: "Ich freue mich immer, wenn wir in Kontakt kommen – ganz gleich, ob es um ein Projekt geht, eine Frage offen ist oder Sie einfach nur mal Hallo sagen möchten.",
+        contactNote2: "Erreichen Sie mich direkt via E-Mail:",
+        findme: "Oder kontaktieren Sie mich über:",
         angabe: "Angaben gemäß § 5 TMG",
         responsible: "Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV",
         privacyHeading: "Datenschutzerklärung",
@@ -64,6 +68,10 @@ const translations = {
         techDesc8: "Security:",
         techDesc9: "Operating Systems:",
         back: "Back to homepage",
+        touch: "Get in Touch",        
+        contactNote: "I’m always happy to connect — whether you have a project in mind, a question, or just want to say hello.",
+        contactNote2: "You can reach me directly by email:",
+        findme: "Or find me here:",
         angabe: "Information in accordance with Section 5 of the German Telemedia Act (TMG)",
         responsible: "Responsible for content in accordance with Section 55 (2) of the German Interstate Broadcasting Treaty (RStV)",
         privacyHeading: "Privacy Policy",
@@ -142,3 +150,14 @@ document.addEventListener('DOMContentLoaded', () => {
   langToggle.removeAttribute('aria-haspopup');
   langToggle.removeAttribute('aria-expanded');
 });
+
+const tabs = document.querySelectorAll('.tab');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tab.classList.remove('clicked'); // remove if already there to retrigger
+    void tab.offsetWidth; // force reflow
+    tab.classList.add('clicked');
+  });
+});
+
