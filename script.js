@@ -2,7 +2,7 @@ document.documentElement.lang = getLangFromURL();
 
 const translations = {
     de: {
-        header: "M.Sc. Informatik – IT Beratung & Forschung",
+        header: "M.Sc. Informatik – IT Beratung",
         aboutMe: "Über mich",
         aboutText: "Ich arbeite als IT-Freelancerin mit fundierter akademischer und beruflicher Erfahrung. Mit einem Masterabschluss der TU Darmstadt und über fünf Jahren Berufserfahrung, insbesondere als IT-Beraterin bei der Software AG und als Forscherin am Fraunhofer SIT, bringe ich fundiertes Know-how in den Bereichen Künstliche Intelligenz und Cybersicherheit mit.",        
         whatIDo: "Meine Arbeit",
@@ -37,7 +37,7 @@ const translations = {
         rightsText: "Ihnen stehen grundsätzlich die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerruf und Widerspruch zu. Wenn Sie glauben, dass die Verarbeitung Ihrer Daten gegen das Datenschutzrecht verstößt oder Ihre datenschutzrechtlichen Ansprüche in sonstiger Weise verletzt worden sind, können Sie sich bei der Aufsichtsbehörde beschweren."
     },
     en: {
-        header: "M.Sc. Informatik – IT Consultant & Researcher",
+        header: "M.Sc. Informatik – IT Consultant",
         aboutMe: "About Me",
         aboutText: "I am an IT freelancer with a strong academic and professional background. I hold a Master's degree from TU Darmstadt and have more than 5 years of working experience, mostly as an IT consultant at Software AG and as a researcher on AI and cybersecurity at Fraunhofer SIT. My work spans IT consulting, AI research, and software security.",
         whatIDo: "What I Do",
@@ -86,8 +86,7 @@ function setLanguage(lang) {
     const key = el.getAttribute('data-key');
     if (trans[key]) el.textContent = trans[key];
     });
-    //document.getElementById('lang-toggle').textContent = trans.toggleLang;
-    document.getElementById('flag-icon').src = `flags/${lang}.svg`;
+    document.getElementById('flag-icon').src = `globe.svg`;  
     document.getElementById('flag-icon').alt = lang;
   }
 
@@ -125,5 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const url = new URL(window.location);
     url.searchParams.set('lang', newLang);
     window.location.href = url.toString(); // reload with new lang param
-  });      
+  });
+  document.getElementById('lang-toggle').setAttribute('role', 'button');
+  document.getElementById('lang-toggle').setAttribute('aria-haspopup', 'true');
+  document.getElementById('lang-toggle').setAttribute('aria-expanded', 'false');
 });

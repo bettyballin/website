@@ -23,7 +23,8 @@ body {
   header .slogan {
     /* background-color: white;
     color: #4CAFB2; */
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Satisfy', cursive;
+    font-size: 1.6rem;
   }
 
   .tabs {

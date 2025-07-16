@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
   <title>Bettina Ballin – IT Freelancer</title>
+  <meta name="description" content="Bettina Ballin is an IT freelancer specializing in software consulting, AI & ML projects, and software security.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>  
@@ -21,15 +22,15 @@
         </div>
     </div>
     <nav class="tabs">
-      <div class="tab active" onclick="showTab('portfolio')">Portfolio</div>
+      <div class="tab active" onclick="showTab('portfolio')" role="tab" aria-selected="true" aria-controls="portfolio">Portfolio</div>
       <div class="tab-separator">|</div>
-      <div class="tab" onclick="showTab('zertifikate')" data-key="certificates">Zertificates</div>
+      <div class="tab" onclick="showTab('zertifikate')" data-key="certificates" role="tab" aria-selected="false" aria-controls="zertifikate">Zertificates</div>
       <div class="tab-separator">|</div>
-      <div class="tab" onclick="showTab('technologien')" data-key="technologies">Technologies</div>
+      <div class="tab" onclick="showTab('technologien')" data-key="technologies" role="tab" aria-selected="false" aria-controls="technologien">Technologies</div>
       <div class="tab-separator">|</div>
-      <div class="tab" onclick="showTab('about')" data-key="aboutMe">About me</div>
+      <div class="tab" onclick="showTab('about')" data-key="aboutMe" role="tab" aria-selected="false" aria-controls="about">About me</div>
       <div class="tab-separator">|</div>
-      <div class="tab" onclick="showTab('contact')" data-key="contact">Contact</div>
+      <div class="tab" onclick="showTab('contact')" data-key="contact" role="tab" aria-selected="false" aria-controls="contact">Contact</div>
     </nav>
   </header>
 
