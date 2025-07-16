@@ -119,13 +119,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
   });
 
-  document.getElementById('lang-toggle').addEventListener('click', () => {
+  const langToggle = document.getElementById('lang-toggle');
+
+  langToggle.addEventListener('mouseover', () => {
+    const newLang = currentLang === 'en' ? 'de' : 'en';
+    document.getElementById('flag-icon').alt = translations[newLang].toggleLang;
+  });
+
+  langToggle.addEventListener('mouseout', () => {
+    document.getElementById('flag-icon').alt = translations[currentLang].toggleLang;
+  });
+
+  langToggle.addEventListener('click', () => {
     const newLang = currentLang === 'en' ? 'de' : 'en';
     const url = new URL(window.location);
     url.searchParams.set('lang', newLang);
     window.location.href = url.toString(); // reload with new lang param
   });
-  document.getElementById('lang-toggle').setAttribute('role', 'button');
-  document.getElementById('lang-toggle').setAttribute('aria-haspopup', 'true');
-  document.getElementById('lang-toggle').setAttribute('aria-expanded', 'false');
+  langToggle.removeAttribute('role');
+  langToggle.removeAttribute('aria-haspopup');
+  langToggle.removeAttribute('aria-expanded');
 });
