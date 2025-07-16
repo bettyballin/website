@@ -24,6 +24,8 @@ body {
     /* background-color: white;
     color: #4CAFB2; */
     font-family: 'Satisfy', cursive;
+    font-weight: lighter;
+    font-size: 1.3rem;
   }
  header .slogan-container {
     position: relative;
@@ -33,7 +35,7 @@ body {
   header .slogan-animated {
     display: inline-block;
     font-family: 'Satisfy', cursive;
-    opacity: 0.8
+    opacity: 0.8;
     transform: scale(1);
     position: absolute;
     top: 20%;
@@ -132,16 +134,16 @@ body {
     justify-content: center;
   }
   .portfolio-item {
-    width: calc(50% - 0.5rem);
+    width: calc(33.33% - 0.5rem);
     text-align: center;
   }
-  .portfolio-pic {
-    width: 90%; 
-    height: 420px;
+  .bubble-image {
+    height: 100px;
     object-fit: cover;
     border-radius: 10px;
     margin-bottom: 0.5rem;
   }
+
   .impressum{
       margin-left: 20px;
       background-color: #4CAFB2; 
@@ -249,4 +251,3 @@ header .slogan-an {
     transform: translate(-50%, -50%);
     animation: sloganEffect 4s ease-in-out forwards;
   }
-

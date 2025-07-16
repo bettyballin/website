@@ -23,7 +23,7 @@
     <nav class="tabs">
       <div class="tab" onclick="showTab('portfolio')" role="tab" aria-selected="false" aria-controls="portfolio">Portfolio</div>
       <div class="tab-separator">|</div>
-      <div class="tab" onclick="showTab('zertifikate')" data-key="certificates" role="tab" aria-selected="false" aria-controls="zertifikate">Certificates</div>
+      <div class="tab" onclick="showTab('zertifikate')" data-key="certificates" role="tab" aria-selected="false" aria-controls="zertifikate">CV</div>
       <div class="tab-separator">|</div>
       <div class="tab active" onclick="showTab('technologien')" data-key="technologies" role="tab" aria-selected="true" aria-controls="technologien">Technologies</div>
       <div class="tab-separator">|</div>
@@ -41,23 +41,24 @@
       <li data-key="whatIDo4">Research & Writing – Papers, whitepapers, documentation</li>
     </ul> -->
     <div class="portfolio-grid">
+      
         <div class="portfolio-item">
-          <a href="https://wildeholzschoenheiten.de">
-              <img src="images/website.gif" alt="Project screenshot" class="portfolio-pic">
-              <p data-key="project">🔗Website project</p>
-          </a>
+          <img src="images/ptw.png" alt="PTW" class="bubble-image">
         </div>
+          
         <div class="portfolio-item">
-          <a href="game/flappybird.html?fromHomepage=true">
-            <img src="images/flappybird.gif" alt="Game screenshot" class="portfolio-pic">
-            <p><a href="https://github.com/bettyballin">🎮GitHub: Mini Games</a></p>
-          </a>
+          <img src="images/sag.png" alt="Software AG" class="bubble-image">
+        </div>
+        
+        <div class="portfolio-item">
+          <img src="images/sit.png" alt="Fraunhofer SIT" class="bubble-image">
+          <img src="images/tud.svg" alt="TU Darmstadt" class="bubble-image">
         </div>
       </div>
   </div>
 
   <div id="zertifikate" class="tab-content" style="display:none">
-    <h2 data-key="certificates">Certificates and Rewards</h2>
+    <h2 data-key="awards">Certificates and Awards</h2>
     <ul>
       <li><strong>T.I.S.P. TeleTrust Information Security Professional</strong><br>
       TÜV Rheinland Group – 06/2023</li>
@@ -66,6 +67,7 @@
       <li><strong>webMethods Certified ESB Developer</strong><br>
       Software AG – 05/2018</li>
     </ul>
+    <!-- <p>Click here for </p> -->
     <iframe src="./CV_DE.pdf" width="100%" height="600px" style="border:none;">
         <p>
             It appears you don't have a PDF plugin for this browser.
@@ -88,6 +90,21 @@
         <li><strong data-key="techDesc8">Security:</strong> Cybersecurity,  Information Security, Pentesting, Vulnerability Assessment</li>
         <li><strong data-key="techDesc9">Operating Systems:</strong> Windows, Linux</li>
       </ul>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <a href="https://wildeholzschoenheiten.de">
+              <img src="images/website.gif" alt="Project screenshot" class="bubble-image">
+              <p data-key="project">🔗Website project</p>
+          </a>
+        </div>
+
+        <div class="portfolio-item">
+          <a href="game/flappybird.html?fromHomepage=true">
+            <img src="images/flappybird.gif" alt="Game screenshot" class="bubble-image">
+            <p><a href="https://github.com/bettyballin">🎮GitHub: Mini Games</a></p>
+          </a>
+        </div>
+      </div>
   </div>
 
   <div id="contact" class="tab-content" style="display:none">
