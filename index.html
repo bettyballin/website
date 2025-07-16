@@ -27,17 +27,25 @@
     <nav class="tabs">
       <div class="tab" onclick="showTab('portfolio')" role="tab" aria-selected="false" aria-controls="portfolio">Portfolio</div>
       <div class="tab-separator">|</div>
-      <div class="tab" onclick="showTab('zertifikate')" data-key="certificates" role="tab" aria-selected="false" aria-controls="zertifikate">Zertificates</div>
+      <div class="tab" onclick="showTab('zertifikate')" data-key="certificates" role="tab" aria-selected="false" aria-controls="zertifikate">Certificates</div>
       <div class="tab-separator">|</div>
       <div class="tab active" onclick="showTab('technologien')" data-key="technologies" role="tab" aria-selected="true" aria-controls="technologien">Technologies</div>
-      <div class="tab-separator">|</div>
-      <div class="tab" onclick="showTab('about')" data-key="aboutMe" role="tab" aria-selected="false" aria-controls="about">About me</div>
       <div class="tab-separator">|</div>
       <div class="tab" onclick="showTab('contact')" data-key="contact" role="tab" aria-selected="false" aria-controls="contact">Contact</div>
     </nav>
   </header>
 
   <div id="portfolio" class="tab-content">
+     <section>
+      <h2 data-key="aboutMe">About Me</h2>
+      <p data-key="aboutText">I am an IT freelancer with a strong academic and professional background. I hold a Master's degree from TU Darmstadt and have more than 5 years of working experience, mostly as an IT consultant at Software AG and as a researcher on AI and cybersecurity at Fraunhofer SIT. My work spans IT consulting, AI research, and software security.</p>
+      <ul>
+        <li data-key="whatIDo1">Software Consulting – Architecture, development, and optimization</li>
+        <li data-key="whatIDo2">AI & ML Projects – Prototypes, pipelines, evaluations</li>
+        <li data-key="whatIDo3">Software Security – Threat modeling, secure design</li>
+        <li data-key="whatIDo4">Research & Writing – Papers, whitepapers, documentation</li>
+      </ul>
+    </section>
     <h2>Portfolio</h2>
     <div class="portfolio-grid">
         <div class="portfolio-item">
@@ -81,19 +89,6 @@
         <li><strong data-key="techDesc8">Security:</strong> Cybersecurity,  Information Security, Pentesting, Vulnerability Assessment</li>
         <li><strong data-key="techDesc9">Operating Systems:</strong> Windows, Linux</li>
       </ul>
-  </div>
-
-  <div id="about" class="tab-content" style="display:none">
-    <section>
-      <h2 data-key="aboutMe">About Me</h2>
-      <p data-key="aboutText">I am an IT freelancer with a strong academic and professional background. I hold a Master's degree from TU Darmstadt and have more than 5 years of working experience, mostly as an IT consultant at Software AG and as a researcher on AI and cybersecurity at Fraunhofer SIT. My work spans IT consulting, AI research, and software security.</p>
-      <ul>
-        <li data-key="whatIDo1">Software Consulting – Architecture, development, and optimization</li>
-        <li data-key="whatIDo2">AI & ML Projects – Prototypes, pipelines, evaluations</li>
-        <li data-key="whatIDo3">Software Security – Threat modeling, secure design</li>
-        <li data-key="whatIDo4">Research & Writing – Papers, whitepapers, documentation</li>
-      </ul>
-    </section>
   </div>
 
   <div id="contact" class="tab-content" style="display:none">

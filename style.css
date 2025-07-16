@@ -16,7 +16,7 @@ body {
     font-size: 2.5rem;
   }
   header p {
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
     font-size: 1.2rem;
     line-height: 0.8;
   }
@@ -64,7 +64,7 @@ body {
     background-color: #4CAFB2;
     color: white;
     font-size: 1.2rem;
-    padding: 1.5rem 3rem;
+    padding: 1.5rem 1rem;
     text-transform: uppercase;
     cursor: pointer;
     transition: background 0.3s;
@@ -121,7 +121,6 @@ body {
     width: 250px;
     height: 275px;
     object-fit: cover;
-    object-position: center -25px;
     border-radius: 10px;
     margin-top: 1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -188,7 +187,7 @@ body {
       flex-direction: column;
     }
     .tab {
-      padding: 1rem 1.5rem;
+      padding: 1rem 0.75rem;
       font-size: 1rem;
     }
     .tab-separator {
