@@ -4,15 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
-  <title>Bettina Ballin – IT Freelancer</title>
-  <meta name="description" content="Bettina Ballin is an IT freelancer specializing in software consulting, AI & ML projects, and software security.">
+  <title>Bettina Ballin – IT Consultant</title>
+  <meta name="description" content="Bettina Ballin is an IT Consultant specializing in software consulting, AI & ML projects, and software security.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>  
   <header>
     <h1>Bettina Ballin</h1>
-    <p data-key="header">M.Sc. Informatik – IT Consultant & Researcher</p>
-    <p class="slogan">Creating secure and elegant solutions</p>
+    <p data-key="header">M.Sc. Informatik – IT Consultant</p>
+    <div class="slogan-container">
+        <p class="slogan">Creating secure and elegant solutions</p>
+        <p class="slogan-animated">Creating secure and elegant solutions</p>
+    </div>
     <img src="profile.jpg" alt="Profile picture" class="profile-pic">
     <div id="lang-toggle">
         <img src="globe.svg" alt="Deutsch" id="flag-icon">
@@ -22,11 +25,11 @@
         </div>
     </div>
     <nav class="tabs">
-      <div class="tab active" onclick="showTab('portfolio')" role="tab" aria-selected="true" aria-controls="portfolio">Portfolio</div>
+      <div class="tab" onclick="showTab('portfolio')" role="tab" aria-selected="false" aria-controls="portfolio">Portfolio</div>
       <div class="tab-separator">|</div>
       <div class="tab" onclick="showTab('zertifikate')" data-key="certificates" role="tab" aria-selected="false" aria-controls="zertifikate">Zertificates</div>
       <div class="tab-separator">|</div>
-      <div class="tab" onclick="showTab('technologien')" data-key="technologies" role="tab" aria-selected="false" aria-controls="technologien">Technologies</div>
+      <div class="tab active" onclick="showTab('technologien')" data-key="technologies" role="tab" aria-selected="true" aria-controls="technologien">Technologies</div>
       <div class="tab-separator">|</div>
       <div class="tab" onclick="showTab('about')" data-key="aboutMe" role="tab" aria-selected="false" aria-controls="about">About me</div>
       <div class="tab-separator">|</div>
@@ -34,7 +37,7 @@
     </nav>
   </header>
 
-  <div id="portfolio" class="tab-content active">
+  <div id="portfolio" class="tab-content">
     <h2>Portfolio</h2>
     <div class="portfolio-grid">
         <div class="portfolio-item">
@@ -64,7 +67,7 @@
     </ul>
   </div>
 
-  <div id="technologien" class="tab-content" style="display:none">
+  <div id="technologien" class="tab-content active">
     <h2 data-key="technologies">Technologies</h2>
     <p data-key="techDesc">As an experienced IT consultant and researcher, I have worked with a broad range of technologies in software development, system integration, artificial intelligence, and IT security:</p>
       <ul>
