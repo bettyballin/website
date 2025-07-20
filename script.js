@@ -394,7 +394,7 @@ function initHeaderScrollEffect() {
   form.addEventListener('submit', function(event) {
   event.preventDefault(); // Prevent the default form submission
   startLoading();
-  emailjs.sendForm('service_pu399tt', 'template_7z56hdz', this).then(() => {
+  emailjs.sendForm("service_pdq3w0n","template_7z56hdz", this).then(() => {
       statusDiv.textContent = 'Success!';
       form.reset(); // Clear the form fields
       stopLoading();
