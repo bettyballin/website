@@ -356,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeaderScrollEffect();
   
   // Improve touch handling for mobile devices
-  const interactiveElements = document.querySelectorAll('.tab, .portfolio-item, button, a');
+  const interactiveElements = document.querySelectorAll('.tab, .portfolio-item, a');
   interactiveElements.forEach(element => {
     // Add specific handling for tabs to ensure they work on mobile
     if (element.classList.contains('tab')) {
@@ -371,6 +371,14 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
       });
     }
+  });
+  
+  // Add separate touch handling for buttons, excluding the form submit button
+  const buttonElements = document.querySelectorAll('button:not([type="submit"])');
+  buttonElements.forEach(button => {
+    button.addEventListener('touchend', function(e) {
+      e.preventDefault();
+    });
   });
 });
 
@@ -396,18 +404,115 @@ function initHeaderScrollEffect() {
   // EmailJS
   const form = document.getElementById('contactForm');
   const statusDiv = document.getElementById('status');
+  let emailTimeout;
+
+  // Check if EmailJS is properly loaded
+  function isEmailJSLoaded() {
+    return typeof emailjs !== 'undefined' && emailjs.hasOwnProperty('init');
+  }
+
+  // Validate form fields
+  function validateContactForm() {
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+    let isValid = true;
+
+    // Validate name (at least 2 characters)
+    if (!nameInput.value || nameInput.value.trim().length < 2) {
+      isValid = false;
+      nameInput.classList.add('invalid-input');
+    } else {
+      nameInput.classList.remove('invalid-input');
+    }
+
+    // Validate email (using a simple regex pattern)
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailInput.value || !emailPattern.test(emailInput.value)) {
+      isValid = false;
+      emailInput.classList.add('invalid-input');
+    } else {
+      emailInput.classList.remove('invalid-input');
+    }
+
+    // Validate message (at least 10 characters)
+    if (!messageInput.value || messageInput.value.trim().length < 10) {
+      isValid = false;
+      messageInput.classList.add('invalid-input');
+    } else {
+      messageInput.classList.remove('invalid-input');
+    }
+
+    return isValid;
+  }
 
   // Add an event listener for form submission
   form.addEventListener('submit', function(event) {
-  event.preventDefault(); // Prevent the default form submission
-  startLoading();
-  emailjs.sendForm("service_pdq3w0n","template_7z56hdz", this).then(() => {
-      statusDiv.textContent = 'Success!';
-      form.reset(); // Clear the form fields
-      stopLoading();
-    }, (error) => {
-      statusDiv.textContent = 'Error: '+error.text +" " + error.message + " " + error;
-      stopLoading();
-    });
+    event.preventDefault(); // Prevent the default form submission
+    
+    // Clear any previous status
+    statusDiv.textContent = '';
+    statusDiv.className = '';
+    
+    // Validate form
+    if (!validateContactForm()) {
+      statusDiv.textContent = 'Please fill out all fields correctly.';
+      statusDiv.className = 'error-message';
+      return;
+    }
+    
+    // Check if EmailJS is loaded
+    if (!isEmailJSLoaded()) {
+      statusDiv.textContent = 'Email service not available. Please try again later or contact directly via email.';
+      statusDiv.className = 'error-message';
+      return;
+    }
+    
+    // Show loading icon with a small delay to ensure it renders properly
+    setTimeout(() => {
+      startLoading();
+    }, 10);
+    
+    // Set a timeout to hide the loading icon if the email sending takes too long
+    emailTimeout = setTimeout(() => {
+      statusDiv.textContent = 'Request is taking longer than expected. Please wait...';
+      // Keep the loading icon visible
+    }, 5000);
+    
+    // Disable form inputs during submission
+    const formInputs = form.querySelectorAll('input, textarea, button');
+    formInputs.forEach(input => input.disabled = true);
+    
+    // Get form data
+    const formData = {
+      from_name: document.getElementById('name').value,
+      from_mail: document.getElementById('email').value,
+      message: document.getElementById('message').value
+    };
+    
+    // Log form data for debugging
+    console.log("Sending email with data:", formData);
+    
+    // Use emailjs.send instead of sendForm to explicitly pass the form data
+    emailjs.send("service_pdq3w0n", "template_7z56hdz", formData)
+      .then(() => {
+        clearTimeout(emailTimeout);
+        statusDiv.textContent = 'Message sent successfully!';
+        statusDiv.className = 'success-message';
+        form.reset(); // Clear the form fields
+        stopLoading();
+        
+        // Re-enable form inputs
+        formInputs.forEach(input => input.disabled = false);
+      }, (error) => {
+        clearTimeout(emailTimeout);
+        console.error("EmailJS Error:", error);
+        statusDiv.textContent = 'Error sending message. Please try again or contact directly via email.';
+        statusDiv.className = 'error-message';
+        stopLoading();
+        
+        // Re-enable form inputs
+        formInputs.forEach(input => input.disabled = false);
+      });
   });
 }

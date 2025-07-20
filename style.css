@@ -510,20 +510,34 @@ body {
   }
 
   .loading {
-			width: 20px;                   /* Width of the loading icon */
-			height: 20px;                  /* Height of the loading icon */
-			border: 3px solid #f3f3f3;     /* Light border */
-			border-top: 3px solid #3498db; /* Blue top border */
-			border-radius: 50%;            /* Make it circular */
-			animation: spin 1s linear infinite; /* Spin animation */
-			display: inline-block;          /* Inline to align with the button */
-			margin-left: 10px;             /* Space between button and icon */
-		}
-
-		@keyframes spin {
-			0% { transform: rotate(0deg); }
-			100% { transform: rotate(360deg); }
-		}
+    width: 24px;                   /* Width of the loading icon */
+    height: 24px;                  /* Height of the loading icon */
+    border: 3px solid rgba(243, 243, 243, 0.3);     /* Light border with transparency */
+    border-top: 3px solid var(--accent-color); /* Use theme accent color */
+    border-radius: 50%;            /* Make it circular */
+    animation: spin 1s linear infinite; /* Spin animation */
+    display: inline-block;          /* Inline to align with the button */
+    margin-left: 10px;             /* Space between button and icon */
+    vertical-align: middle;        /* Better alignment with button text */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    position: relative;            /* For z-index */
+    z-index: 10;                   /* Ensure it's above other elements */
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Adjust loading icon for mobile devices */
+  @media (max-width: 480px) {
+    .loading {
+      width: 28px;                /* Larger on mobile for better visibility */
+      height: 28px;
+      margin-left: 15px;          /* More spacing on mobile */
+      border-width: 4px;          /* Thicker border on mobile */
+    }
+  }
 
   /* Media queries for responsive design */
   /* Medium screens */
@@ -707,6 +721,13 @@ form {
   margin: 1rem 0;
 }
 
+.form-submit {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 1rem;
+}
+
 label {
   font-weight: bold;
   display: block;
@@ -787,17 +808,62 @@ button[type="submit"]:active {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Form validation styles */
+/* Form validation and status message styles */
 .error-message {
   color: #E4A56C;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   display: block;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background-color: rgba(228, 165, 108, 0.1);
+  border-radius: 5px;
+  font-weight: 500;
 }
 
-input:invalid, textarea:invalid {
+.success-message {
+  color: #4CAF50;
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background-color: rgba(76, 175, 80, 0.1);
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+input:invalid, textarea:invalid, .invalid-input {
   border-color: #E4A56C;
+  background-color: rgba(228, 165, 108, 0.05);
+  box-shadow: 0 0 0 1px #E4A56C;
+}
+
+/* Add visual feedback when focusing on invalid inputs */
+input:invalid:focus, textarea:invalid:focus, .invalid-input:focus {
+  border-color: #E4A56C;
+  box-shadow: 0 0 0 2px rgba(228, 165, 108, 0.3);
+  outline: none;
+}
+
+/* Improve form inputs on mobile */
+@media (max-width: 480px) {
+  input, textarea, button[type="submit"] {
+    font-size: 16px; /* Prevent zoom on iOS */
+    padding: 12px;   /* Larger touch targets */
+  }
+  
+  /* Increase spacing between form elements on mobile */
+  .form-group {
+    margin-bottom: 16px;
+  }
+  
+  /* Make the status message more visible on mobile */
+  #status {
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+  }
 }
 /* Skills section styling */
 .skills-container {
