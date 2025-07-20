@@ -355,15 +355,22 @@ document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initHeaderScrollEffect();
   
-  // Prevent double-tap zoom on iOS for interactive elements
+  // Improve touch handling for mobile devices
   const interactiveElements = document.querySelectorAll('.tab, .portfolio-item, button, a');
   interactiveElements.forEach(element => {
-    element.addEventListener('touchend', function(e) {
-      // Prevent default only if this is a tap (not a scroll or other gesture)
-      if (e.changedTouches[0].pageX === e.changedTouches[0].screenX) {
+    // Add specific handling for tabs to ensure they work on mobile
+    if (element.classList.contains('tab')) {
+      element.addEventListener('touchend', function(e) {
+        e.preventDefault(); // Prevent default behavior
+        const tabId = this.getAttribute('aria-controls');
+        showTab(tabId, this);
+      });
+    } else {
+      // For other interactive elements, just prevent double-tap zoom
+      element.addEventListener('touchend', function(e) {
         e.preventDefault();
-      }
-    });
+      });
+    }
   });
 });
 
