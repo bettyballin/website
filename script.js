@@ -27,8 +27,15 @@ const translations = {
         techDesc7: "Künstliche Intelligenz (KI):",
         techDesc8: "Sicherheit:",
         techDesc9: "Betriebssysteme:",
+        tu: "Masterstudium im Bereich Informatik mit Schwerpunkt auf KI-Technologien",
+        eta: "Implementierung von Tools zur Energieflexibilität in Python, Entwicklung von Webapplikationen mit Flask und Docker-Deployment",
+        sag: "IT-Beratungsprojekte für Unternehmenskunden mit Schwerpunkt auf Systemintegration und API-Management. Spezialisiert auf die Implementierung und Optimierung der webMethods Product Suite.",
+        fraunhofer: "Forschungsarbeiten zu KI-Sicherheit und Methoden zur Anomalieerkennung. Veröffentlichungen zu sicherem Systemdesign und Methoden der Bedrohungsmodellierung.",
         back: "Zurück zur Startseite",
         touch: "Get in Touch",        
+        message: "Nachricht",
+        send: "Senden",
+        download: "Lebenslauf anzeigen oder herunterladen:",
         contactNote: "Ich freue mich immer, wenn wir in Kontakt kommen – ganz gleich, ob es um ein Projekt geht, eine Frage offen ist oder Sie einfach nur mal Hallo sagen möchten.",
         contactNote2: "Erreichen Sie mich direkt via E-Mail:",
         findme: "Oder kontaktieren Sie mich über:",
@@ -67,8 +74,15 @@ const translations = {
         techDesc7: "AI & Machine Learning:",
         techDesc8: "Security:",
         techDesc9: "Operating Systems:",
+        tu: "Master's degree in computer science with a focus on AI technologies. Tutoring and support of new students",
+        sag: "IT consulting projects for corporate clients with a focus on systems integration and API management. Specializing in the implementation and optimization of the webMethods product suite.",
+        eta: "Implementation of energy flexibility tools in Python, development of web applications using Flask and Docker",
+        fraunhofer: "Conducted research on AI security and anomaly detection techniques. Published papers on secure system design and threat modeling methodologies.",
         back: "Back to homepage",
-        touch: "Get in Touch",        
+        touch: "Get in Touch",    
+        message: "Message",
+        send: "Send Message",
+        download: "View or download my complete CV:",
         contactNote: "I’m always happy to connect — whether you have a project in mind, a question, or just want to say hello.",
         contactNote2: "You can reach me directly by email:",
         findme: "Or find me here:",
@@ -96,21 +110,46 @@ function setLanguage(lang) {
     const key = el.getAttribute('data-key');
     if (trans[key]) el.textContent = trans[key];
     });
-    document.getElementById('flag-icon').src = `globe.svg`;  
+    document.getElementById('flag-icon').src = `images/globe.svg`;
     document.getElementById('flag-icon').alt = lang;
+    
+    // Update the language label
+    const langLabel = document.querySelector('.lang-label');
+    if (langLabel) {
+      langLabel.textContent = lang === 'en' ? 'EN | DE' : 'DE | EN';
+    }
   }
 
-function showTab(tabId) {
+function showTab(tabId, clickedTab) {
+  // Hide all tab contents and remove active class from all tabs
   document.querySelectorAll('.tab-content').forEach(function(content) {
     content.classList.remove('active');
     content.style.display = 'none';
   });
-  document.getElementById(tabId).classList.add('active');
-  document.getElementById(tabId).style.display = 'block';
+  
   document.querySelectorAll('.tab').forEach(function(tab) {
     tab.classList.remove('active');
+    tab.setAttribute('aria-selected', 'false');
   });
-  event.target.classList.add('active');
+  
+  // Show the selected tab content and add active class to the clicked tab
+  document.getElementById(tabId).classList.add('active');
+  document.getElementById(tabId).style.display = 'block';
+  
+  // If a tab element was clicked (not triggered by keyboard)
+  if (clickedTab) {
+    clickedTab.classList.add('active');
+    clickedTab.setAttribute('aria-selected', 'true');
+    
+    // Add click animation
+    clickedTab.classList.remove('clicked');
+    void clickedTab.offsetWidth; // Force reflow
+    clickedTab.classList.add('clicked');
+  } else if (event && event.target.classList.contains('tab')) {
+    // For backward compatibility with onclick attribute
+    event.target.classList.add('active');
+    event.target.setAttribute('aria-selected', 'true');
+  }
 }
 
 // Handle button click: update URL with new lang param
@@ -155,9 +194,107 @@ const tabs = document.querySelectorAll('.tab');
 
 tabs.forEach(tab => {
   tab.addEventListener('click', () => {
-    tab.classList.remove('clicked'); // remove if already there to retrigger
-    void tab.offsetWidth; // force reflow
-    tab.classList.add('clicked');
+    const tabId = tab.getAttribute('aria-controls');
+    showTab(tabId, tab);
   });
 });
 
+
+// Form validation function
+function validateForm() {
+  let isValid = true;
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const messageInput = document.getElementById('message');
+  
+  // Clear previous error messages
+  document.getElementById('nameError').textContent = '';
+  document.getElementById('emailError').textContent = '';
+  document.getElementById('messageError').textContent = '';
+  
+  // Validate name
+  if (nameInput.value.length < 2) {
+    document.getElementById('nameError').textContent = 'Name must be at least 2 characters';
+    isValid = false;
+  }
+  
+  // Validate email
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!emailPattern.test(emailInput.value)) {
+    document.getElementById('emailError').textContent = 'Please enter a valid email address';
+    isValid = false;
+  }
+  
+  // Validate message
+  if (messageInput.value.length < 10) {
+    document.getElementById('messageError').textContent = 'Message must be at least 10 characters';
+    isValid = false;
+  }
+  
+  return isValid;
+}
+
+// Handle keyboard navigation for tabs
+function handleTabKeyPress(event, tabId) {
+  // If Enter or Space is pressed, activate the tab
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    showTab(tabId);
+  }
+  
+  // Arrow key navigation between tabs
+  if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+    event.preventDefault();
+    
+    const tabs = Array.from(document.querySelectorAll('.tab'));
+    const currentIndex = tabs.findIndex(tab => tab.id === `tab-${tabId}`);
+    let newIndex;
+    
+    if (event.key === 'ArrowRight') {
+      newIndex = (currentIndex + 1) % tabs.length;
+    } else {
+      newIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+    }
+    
+    tabs[newIndex].focus();
+  }
+}
+
+// Dark mode functionality
+function initThemeToggle() {
+  const themeToggle = document.getElementById('theme-toggle');
+  const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+  
+  // Check for saved theme preference or use the system preference
+  const currentTheme = localStorage.getItem('theme') || 
+                      (prefersDarkScheme.matches ? 'dark' : 'light');
+  
+  // Set initial theme
+  if (currentTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+  
+  // Toggle theme when button is clicked
+  themeToggle.addEventListener('click', () => {
+    let theme;
+    
+    // If the current theme is dark, switch to light
+    if (document.documentElement.getAttribute('data-theme') === 'dark') {
+      document.documentElement.removeAttribute('data-theme');
+      theme = 'light';
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      theme = 'dark';
+    }
+    
+    // Save the preference
+    localStorage.setItem('theme', theme);
+  });
+}
+
+// Initialize theme toggle when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  initThemeToggle();
+});
