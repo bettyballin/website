@@ -2,54 +2,116 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
   <title>Impressum & Datenschutzerklärung</title>
+  <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">(function() {  emailjs.init("F83ljz72RtOi48eV9"); })();  </script>
+  <style>
+    .impressum-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    
+    .impressum-section {
+      background: linear-gradient(
+        145deg,
+        var(--card-bg) 0%,
+        color-mix(in srgb, var(--card-bg) 95%, white) 100%
+      );
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow:
+        0 10px 30px -5px rgba(0, 0, 0, 0.1),
+        0 5px 15px -5px rgba(0, 0, 0, 0.05);
+      text-align: left;
+    }
+    
+    .impressum-section h2, .impressum-section h3 {
+      color: var(--accent-color);
+      margin-top: 0;
+    }
+    
+    @media (max-width: 480px) {
+      .impressum-section {
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
 </head>
-<body style="text-align: center;">
+<body>
   <header>
     <h1>Impressum</h1>
-    <button id="lang-toggle">English</button>
+    <p>Bettina Ballin</p>
+    <div id="theme-toggle" aria-label="Toggle dark mode" class="theme-toggle-left" onclick="toggleTheme()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon theme-icon-light">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon theme-icon-dark">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </div>
+    <div id="lang-toggle" data-tooltip="English" class="lang-toggle-right" onclick="toggleLanguage()">
+      <img src="images/globe.svg" alt="English" id="flag-icon">
+      <span class="lang-label"></span>
+    </div>
   </header>
   
-  <section>
-    <p><strong data-key="angabe">Angaben gemäß § 5 TMG:</strong><br>
-      Bettina Ballin<br>
-      Lotichiusstr. 43<br>
-      36381 Schlüchtern<br>
-      Deutschland</p>
-  </section>
-  
-  <section>
-    <p><strong data-key="contact">Kontakt</strong><br>
-    E-Mail: <a href="mailto:betty.ballin@yahoo.de">betty.ballin@yahoo.de</a></p>
-  </section>
+  <div class="impressum-container">
+    <div class="impressum-section">
+      <p><strong data-key="angabe">Angaben gemäß § 5 TMG:</strong><br>
+        Bettina Ballin<br>
+        Lotichiusstr. 43<br>
+        36381 Schlüchtern<br>
+        Deutschland</p>
+    </div>
+    
+    <div class="impressum-section">
+      <p><strong data-key="contact">Kontakt</strong><br>
+      E-Mail: <a href="mailto:betty.ballin@yahoo.de">betty.ballin@yahoo.de</a></p>
+    </div>
 
-  <section>
-  <p><strong data-key="responsible">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong><br>
-    Bettina Ballin<br>
-    Lotichiusstr. 43<br>
-    36381 Schlüchtern<br>
-  </section>
-  
-  <section>
-    <h2 data-key="privacyHeading">Datenschutzerklärung</h2>
-    <p data-key="privacyText">Der Schutz Ihrer persönlichen Daten ist mir ein besonderes Anliegen. Ich verarbeite Ihre Daten daher ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TMG). In dieser Datenschutzerklärung informiere ich Sie über die wichtigsten Aspekte der Datenverarbeitung im Rahmen meiner Website.</p>
-  </section>
-  
-  <section>
-    <h3 data-key="contactHeading">Kontakt mit mir</h3>
-    <p data-key="contactText">Wenn Sie per Formular auf der Website oder per E-Mail Kontakt mit mir aufnehmen, werden Ihre angegebenen Daten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen sechs Monate bei mir gespeichert. Diese Daten gebe ich nicht ohne Ihre Einwilligung weiter.</p>
-  </section>
-  
-  <section>
-    <h3 data-key="rightsHeading">Ihre Rechte</h3>
-    <p data-key="rightsText">Ihnen stehen grundsätzlich die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerruf und Widerspruch zu. Wenn Sie glauben, dass die Verarbeitung Ihrer Daten gegen das Datenschutzrecht verstößt oder Ihre datenschutzrechtlichen Ansprüche in sonstiger Weise verletzt worden sind, können Sie sich bei der Aufsichtsbehörde beschweren.</p>
-  </section>
+    <div class="impressum-section">
+      <p><strong data-key="responsible">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong><br>
+        Bettina Ballin<br>
+        Lotichiusstr. 43<br>
+        36381 Schlüchtern</p>
+    </div>
+    
+    <div class="impressum-section">
+      <h2 data-key="privacyHeading">Datenschutzerklärung</h2>
+      <p data-key="privacyText">Der Schutz Ihrer persönlichen Daten ist mir ein besonderes Anliegen. Ich verarbeite Ihre Daten daher ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TMG). In dieser Datenschutzerklärung informiere ich Sie über die wichtigsten Aspekte der Datenverarbeitung im Rahmen meiner Website.</p>
+    </div>
+    
+    <div class="impressum-section">
+      <h3 data-key="contactHeading">Kontakt mit mir</h3>
+      <p data-key="contactText">Wenn Sie per Formular auf der Website oder per E-Mail Kontakt mit mir aufnehmen, werden Ihre angegebenen Daten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen sechs Monate bei mir gespeichert. Diese Daten gebe ich nicht ohne Ihre Einwilligung weiter.</p>
+    </div>
+    
+    <div class="impressum-section">
+      <h3 data-key="rightsHeading">Ihre Rechte</h3>
+      <p data-key="rightsText">Ihnen stehen grundsätzlich die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerruf und Widerspruch zu. Wenn Sie glauben, dass die Verarbeitung Ihrer Daten gegen das Datenschutzrecht verstößt oder Ihre datenschutzrechtlichen Ansprüche in sonstiger Weise verletzt worden sind, können Sie sich bei der Aufsichtsbehörde beschweren.</p>
+    </div>
+  </div>
 
   <footer>
-    &copy; 2025 Bettina Ballin <a href="index.html" class="impressum" data-key="back">Zurück zur Startseite</a>
+    <div class="footer-content">
+      <div class="copyright">&copy; 2025 Bettina Ballin</div>
+      <a href="index.html" class="impressum" data-key="back">Zurück zur Startseite</a>
+    </div>
   </footer>
-  <script src="script.js"></script> 
+  <script src="script.js"></script>
 </body>
 </html>

@@ -36,7 +36,7 @@
         <p class="slogan">Creating secure and elegant solutions</p>
         <p class="slogan-animated">Creating secure and elegant solutions</p>
     </div>
-    <div id="theme-toggle" aria-label="Toggle dark mode" class="theme-toggle-left">
+    <div id="theme-toggle" aria-label="Toggle dark mode" class="theme-toggle-left" onclick="toggleTheme()" data-action="toggle-theme">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon theme-icon-light">
         <circle cx="12" cy="12" r="5"></circle>
         <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -53,9 +53,9 @@
       </svg>
     </div>
     <img src="images/profile2.jpg" alt="Profile picture" class="profile-pic" loading="eager" fetchpriority="high">
-    <div id="lang-toggle" data-tooltip="Deutsch" class="lang-toggle-right">
-      <img src="images/globe.svg" alt="Deutsch" id="flag-icon">
-      <span class="lang-label">EN | DE</span>
+    <div id="lang-toggle" data-tooltip="DE | EN" class="lang-toggle-right" onclick="toggleLanguage()">
+      <img src="images/globe.svg" alt="DE | EN" id="flag-icon">
+      <span class="lang-label"></span>
     </div>
     <nav class="tabs" role="tablist">
       <div class="tab active" onclick="showTab('portfolio', this)" role="tab" aria-selected="true" aria-controls="portfolio" tabindex="0" id="tab-portfolio" onkeydown="handleTabKeyPress(event, 'portfolio')">Portfolio</div>
@@ -280,8 +280,44 @@
   </div>
 
   <footer>
-    &copy; 2025 Bettina Ballin <a href="impressum.html" class="impressum">Impressum</a>
+    <div class="footer-content">
+      <div class="copyright">&copy; 2025 Bettina Ballin</div>
+      <a href="impressum.html" class="impressum">Impressum</a>
+    </div>
   </footer>
-  <script src="script.js"></script> 
+  <script src="script.js"></script>
+  <script>
+    // Direct event listener for theme toggle button
+    // Direct event listener for theme toggle button
+    document.addEventListener('DOMContentLoaded', function() {
+      // Use both ID and data-action attribute to ensure we get the right element
+      const themeToggleButton = document.querySelector('[data-action="toggle-theme"]');
+      if (themeToggleButton) {
+        console.log('Theme toggle button found:', themeToggleButton);
+        
+        // Remove existing event listeners
+        themeToggleButton.removeEventListener('click', toggleTheme);
+        
+        // Add new event listeners
+        themeToggleButton.addEventListener('click', function(e) {
+          console.log('Theme toggle clicked');
+          e.preventDefault();
+          e.stopPropagation();
+          toggleTheme();
+          return false;
+        });
+        
+        themeToggleButton.addEventListener('touchend', function(e) {
+          console.log('Theme toggle touched');
+          e.preventDefault();
+          e.stopPropagation();
+          toggleTheme();
+          return false;
+        });
+      } else {
+        console.error('Theme toggle button not found');
+      }
+    });
+  </script>
 </body>
 </html>

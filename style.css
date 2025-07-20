@@ -311,14 +311,25 @@ body {
     text-decoration: underline;
   }
   footer {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
-    text-align: center;
-    padding: 2rem;
     background-color: var(--footer-bg);
     font-size: 0.9rem;
     color: var(--accent-color);
+    padding: 1.5rem;
+    text-align: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .copyright {
+    padding: 0.5rem;
   }
   img.profile-pic {
     width: 230px;
@@ -460,13 +471,23 @@ body {
   }
   .impressum{
       margin-left: 20px;
-      background-color: #4CAFB2; 
+      background-color: var(--accent-color);
       color: white;
-      padding: 0.5rem 1rem; 
-      border-radius: 5px; 
-      text-decoration: none; 
-      border: 1px solid #4CAFB2; 
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      text-decoration: none;
+      border: 1px solid var(--accent-color);
       font-weight: bold;
+      display: inline-block;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .impressum:hover {
+      background-color: color-mix(in srgb, var(--accent-color) 80%, white);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      text-decoration: none;
   }
   .theme-toggle-left {
     position: absolute;
@@ -1197,6 +1218,27 @@ input:invalid:focus, textarea:invalid:focus, .invalid-input:focus {
   button[type="submit"] {
     width: 100%;
     margin-top: 0.5rem;
+  }
+  
+  /* Footer and impressum button mobile styling */
+  @media (max-width: 480px) {
+    footer {
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .impressum {
+      margin-left: 0;
+      margin-top: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+      width: 80%;
+      text-align: center;
+      display: block;
+    }
   }
   
   /* Improve readability on small screens */

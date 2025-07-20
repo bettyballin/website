@@ -111,6 +111,35 @@ function getLangFromURL() {
   return params.get('lang') === 'de' ? 'de' : 'en'; // default to 'en'
 }
 
+// Global function to toggle language (can be called from HTML)
+function toggleLanguage() {
+  const currentLang = getLangFromURL();
+  const newLang = currentLang === 'en' ? 'de' : 'en';
+  const url = new URL(window.location);
+  url.searchParams.set('lang', newLang);
+  window.location.href = url.toString(); // reload with new lang param
+}
+
+// Global function to toggle theme (can be called from HTML)
+function toggleTheme() {
+  let theme;
+  
+  // If the current theme is dark, switch to light
+  if (document.documentElement.getAttribute('data-theme') === 'dark') {
+    document.documentElement.removeAttribute('data-theme');
+    theme = 'light';
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    theme = 'dark';
+  }
+  
+  // Update the icon to match the new theme
+  updateThemeIcon(theme);
+  
+  // Save the preference
+  localStorage.setItem('theme', theme);
+}
+
 // Set translated content
 function setLanguage(lang) {
   const trans = translations[lang];
@@ -124,7 +153,7 @@ function setLanguage(lang) {
     // Update the language label
     const langLabel = document.querySelector('.lang-label');
     if (langLabel) {
-      langLabel.textContent = lang === 'en' ? 'EN | DE' : 'DE | EN';
+      langLabel.textContent = lang === 'en' ? 'EN' : 'DE';
     }
     const cvLink = document.getElementById('cv-link');
     if (lang === 'en') {
@@ -171,10 +200,9 @@ function showTab(tabId, clickedTab) {
   // Removed hash update to prevent jumping
 }
 
-// Handle button click: update URL with new lang param
+// Initialize tabs and links when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   const currentLang = getLangFromURL();
-  setLanguage(currentLang);
   
   // Check for hash in URL to show the correct tab on page load
   if (window.location.hash) {
@@ -195,27 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
           link.href = url.toString();
       }
   });
-
-  const langToggle = document.getElementById('lang-toggle');
-
-  langToggle.addEventListener('mouseover', () => {
-    const newLang = currentLang === 'en' ? 'de' : 'en';
-    document.getElementById('flag-icon').alt = translations[newLang].toggleLang;
-  });
-
-  langToggle.addEventListener('mouseout', () => {
-    document.getElementById('flag-icon').alt = translations[currentLang].toggleLang;
-  });
-
-  langToggle.addEventListener('click', () => {
-    const newLang = currentLang === 'en' ? 'de' : 'en';
-    const url = new URL(window.location);
-    url.searchParams.set('lang', newLang);
-    window.location.href = url.toString(); // reload with new lang param
-  });
-  langToggle.removeAttribute('role');
-  langToggle.removeAttribute('aria-haspopup');
-  langToggle.removeAttribute('aria-expanded');
 });
 
 const tabs = document.querySelectorAll('.tab');
@@ -288,6 +295,40 @@ function handleTabKeyPress(event, tabId) {
   }
 }
 
+// Language toggle functionality
+function initLangToggle() {
+  const langToggle = document.getElementById('lang-toggle');
+  if (!langToggle) return; // Skip if element doesn't exist
+  
+  const currentLang = getLangFromURL();
+  
+  // Add hover effects
+  langToggle.addEventListener('mouseover', () => {
+    const newLang = currentLang === 'en' ? 'de' : 'en';
+    if (document.getElementById('flag-icon')) {
+      document.getElementById('flag-icon').alt = translations[newLang]?.toggleLang || newLang.toUpperCase();
+    }
+  });
+
+  langToggle.addEventListener('mouseout', () => {
+    if (document.getElementById('flag-icon')) {
+      document.getElementById('flag-icon').alt = translations[currentLang]?.toggleLang || currentLang.toUpperCase();
+    }
+  });
+
+  // Add click and touch functionality
+  langToggle.addEventListener('click', toggleLanguage);
+  langToggle.addEventListener('touchend', (e) => {
+    e.preventDefault(); // Prevent default to avoid double-tap zoom
+    toggleLanguage();
+  });
+  
+  // Remove unnecessary attributes
+  langToggle.removeAttribute('role');
+  langToggle.removeAttribute('aria-haspopup');
+  langToggle.removeAttribute('aria-expanded');
+}
+
 // Dark mode functionality
 function initThemeToggle() {
   const themeToggle = document.getElementById('theme-toggle');
@@ -308,23 +349,12 @@ function initThemeToggle() {
   updateThemeIcon(currentTheme);
   
   // Toggle theme when button is clicked
-  themeToggle.addEventListener('click', () => {
-    let theme;
-    
-    // If the current theme is dark, switch to light
-    if (document.documentElement.getAttribute('data-theme') === 'dark') {
-      document.documentElement.removeAttribute('data-theme');
-      theme = 'light';
-    } else {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      theme = 'dark';
-    }
-    
-    // Update the icon to match the new theme
-    updateThemeIcon(theme);
-    
-    // Save the preference
-    localStorage.setItem('theme', theme);
+  themeToggle.addEventListener('click', toggleTheme);
+  
+  // Add touch event support for mobile
+  themeToggle.addEventListener('touchend', (e) => {
+    e.preventDefault(); // Prevent default to avoid double-tap zoom
+    toggleTheme();
   });
 }
 
@@ -350,13 +380,19 @@ function stopLoading() {
   loadingIcon.style.display = 'none';
 }
 
-// Initialize theme toggle when DOM is loaded
+// Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+  // Set language based on URL parameter
+  const currentLang = getLangFromURL();
+  setLanguage(currentLang);
+  
+  // Initialize UI components
   initThemeToggle();
+  initLangToggle();
   initHeaderScrollEffect();
   
   // Improve touch handling for mobile devices
-  const interactiveElements = document.querySelectorAll('.tab, .portfolio-item, a');
+  const interactiveElements = document.querySelectorAll('.tab, .portfolio-item');
   interactiveElements.forEach(element => {
     // Add specific handling for tabs to ensure they work on mobile
     if (element.classList.contains('tab')) {
@@ -368,6 +404,23 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       // For other interactive elements, just prevent double-tap zoom
       element.addEventListener('touchend', function(e) {
+        e.preventDefault();
+      });
+    }
+  });
+  
+  // Add touch handling for links, excluding navigation links and footer links
+  const linkElements = document.querySelectorAll('a:not(.impressum):not([href^="mailto:"]):not([href^="https://"])');
+  linkElements.forEach(link => {
+    // Only prevent default for internal content links, not navigation links
+    if (!link.closest('footer') && !link.classList.contains('cv-button')) {
+      link.addEventListener('touchend', function(e) {
+        // Check if this is a navigation link
+        const href = this.getAttribute('href');
+        if (href && (href.startsWith('#') || href.includes('.html'))) {
+          // Don't prevent default for navigation links
+          return;
+        }
         e.preventDefault();
       });
     }
