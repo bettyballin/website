@@ -285,39 +285,7 @@
       <a href="impressum.html" class="impressum">Impressum</a>
     </div>
   </footer>
+  <script src="theme.js"></script>
   <script src="script.js"></script>
-  <script>
-    // Direct event listener for theme toggle button
-    // Direct event listener for theme toggle button
-    document.addEventListener('DOMContentLoaded', function() {
-      // Use both ID and data-action attribute to ensure we get the right element
-      const themeToggleButton = document.querySelector('[data-action="toggle-theme"]');
-      if (themeToggleButton) {
-        console.log('Theme toggle button found:', themeToggleButton);
-        
-        // Remove existing event listeners
-        themeToggleButton.removeEventListener('click', toggleTheme);
-        
-        // Add new event listeners
-        themeToggleButton.addEventListener('click', function(e) {
-          console.log('Theme toggle clicked');
-          e.preventDefault();
-          e.stopPropagation();
-          toggleTheme();
-          return false;
-        });
-        
-        themeToggleButton.addEventListener('touchend', function(e) {
-          console.log('Theme toggle touched');
-          e.preventDefault();
-          e.stopPropagation();
-          toggleTheme();
-          return false;
-        });
-      } else {
-        console.error('Theme toggle button not found');
-      }
-    });
-  </script>
 </body>
 </html>

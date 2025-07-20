@@ -120,25 +120,7 @@ function toggleLanguage() {
   window.location.href = url.toString(); // reload with new lang param
 }
 
-// Global function to toggle theme (can be called from HTML)
-function toggleTheme() {
-  let theme;
-  
-  // If the current theme is dark, switch to light
-  if (document.documentElement.getAttribute('data-theme') === 'dark') {
-    document.documentElement.removeAttribute('data-theme');
-    theme = 'light';
-  } else {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    theme = 'dark';
-  }
-  
-  // Update the icon to match the new theme
-  updateThemeIcon(theme);
-  
-  // Save the preference
-  localStorage.setItem('theme', theme);
-}
+// Theme functionality moved to theme.js
 
 // Set translated content
 function setLanguage(lang) {
@@ -329,48 +311,9 @@ function initLangToggle() {
   langToggle.removeAttribute('aria-expanded');
 }
 
-// Dark mode functionality
-function initThemeToggle() {
-  const themeToggle = document.getElementById('theme-toggle');
-  const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-  
-  // Check for saved theme preference or use the system preference
-  const currentTheme = localStorage.getItem('theme') || 
-                      (prefersDarkScheme.matches ? 'dark' : 'light');
-  
-  // Set initial theme
-  if (currentTheme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-  } else {
-    document.documentElement.removeAttribute('data-theme');
-  }
-  
-  // Make sure the correct icon is displayed initially
-  updateThemeIcon(currentTheme);
-  
-  // Toggle theme when button is clicked
-  themeToggle.addEventListener('click', toggleTheme);
-  
-  // Add touch event support for mobile
-  themeToggle.addEventListener('touchend', (e) => {
-    e.preventDefault(); // Prevent default to avoid double-tap zoom
-    toggleTheme();
-  });
-}
+// Dark mode functionality moved to theme.js
 
-// Function to update the theme icon based on current theme
-function updateThemeIcon(theme) {
-  const lightIcon = document.querySelector('.theme-icon.theme-icon-light');
-  const darkIcon = document.querySelector('.theme-icon.theme-icon-dark');
-  
-  if (theme === 'dark') {
-    lightIcon.style.display = 'none';
-    darkIcon.style.display = 'block';
-  } else {
-    lightIcon.style.display = 'block';
-    darkIcon.style.display = 'none';
-  }
-}
+// Theme icon functionality moved to theme.js
 function startLoading() {
   const loadingIcon = document.getElementById('loadingIcon');
   loadingIcon.style.display = 'inline-block'; // Show the loading icon
