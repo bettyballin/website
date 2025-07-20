@@ -276,6 +276,9 @@ function initThemeToggle() {
     document.documentElement.removeAttribute('data-theme');
   }
   
+  // Make sure the correct icon is displayed initially
+  updateThemeIcon(currentTheme);
+  
   // Toggle theme when button is clicked
   themeToggle.addEventListener('click', () => {
     let theme;
@@ -289,9 +292,26 @@ function initThemeToggle() {
       theme = 'dark';
     }
     
+    // Update the icon to match the new theme
+    updateThemeIcon(theme);
+    
     // Save the preference
     localStorage.setItem('theme', theme);
   });
+}
+
+// Function to update the theme icon based on current theme
+function updateThemeIcon(theme) {
+  const lightIcon = document.querySelector('.theme-icon.theme-icon-light');
+  const darkIcon = document.querySelector('.theme-icon.theme-icon-dark');
+  
+  if (theme === 'dark') {
+    lightIcon.style.display = 'none';
+    darkIcon.style.display = 'block';
+  } else {
+    lightIcon.style.display = 'block';
+    darkIcon.style.display = 'none';
+  }
 }
 
 // Initialize theme toggle when DOM is loaded
