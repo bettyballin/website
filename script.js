@@ -29,12 +29,16 @@ const translations = {
         techDesc9: "Betriebssysteme:",
         tu: "Masterstudium im Bereich Informatik mit Schwerpunkt auf KI-Technologien",
         eta: "Implementierung von Tools zur Energieflexibilität in Python, Entwicklung von Webapplikationen mit Flask und Docker-Deployment",
-        sag: "IT-Beratungsprojekte für Unternehmenskunden mit Schwerpunkt auf Systemintegration und API-Management. Spezialisiert auf die Implementierung und Optimierung der webMethods Product Suite.",
-        fraunhofer: "Forschungsarbeiten zu KI-Sicherheit und Methoden zur Anomalieerkennung. Veröffentlichungen zu sicherem Systemdesign und Methoden der Bedrohungsmodellierung.",
+        sag: "IT-Beratungsprojekte für Unternehmenskunden mit Schwerpunkt auf Systemintegration und API-Management. Spezialisiert auf die Implementierung und Optimierung der webMethods Product Suite",
+        fraunhofer: "Forschungsarbeiten zu KI-Sicherheit und Methoden zur Anomalieerkennung. Veröffentlichungen zu sicherem Systemdesign und Methoden der Bedrohungsmodellierung",
         back: "Zurück zur Startseite",
         touch: "Get in Touch",        
         message: "Nachricht",
         send: "Senden",
+        education: "Ausbildung",
+        experience: "Berufserfahrung",
+        tud: "Technische Universität Darmstadt",
+        focus: "Fokus: KI und Maschinelles Lernen",
         download: "Lebenslauf anzeigen oder herunterladen:",
         contactNote: "Ich freue mich immer, wenn wir in Kontakt kommen – ganz gleich, ob es um ein Projekt geht, eine Frage offen ist oder Sie einfach nur mal Hallo sagen möchten.",
         contactNote2: "Erreichen Sie mich direkt via E-Mail:",
@@ -75,13 +79,17 @@ const translations = {
         techDesc8: "Security:",
         techDesc9: "Operating Systems:",
         tu: "Master's degree in computer science with a focus on AI technologies. Tutoring and support of new students",
-        sag: "IT consulting projects for corporate clients with a focus on systems integration and API management. Specializing in the implementation and optimization of the webMethods product suite.",
+        sag: "IT consulting projects for corporate clients with a focus on systems integration and API management. Specializing in the implementation and optimization of the webMethods product suite",
         eta: "Implementation of energy flexibility tools in Python, development of web applications using Flask and Docker",
-        fraunhofer: "Conducted research on AI security and anomaly detection techniques. Published papers on secure system design and threat modeling methodologies.",
+        fraunhofer: "Conducted research on AI security and anomaly detection techniques. Published papers on secure system design and threat modeling methodologies",
         back: "Back to homepage",
         touch: "Get in Touch",    
         message: "Message",
         send: "Send Message",
+        education: "Education",
+        experience: "Professional Experience",
+        tud: "Technical University of Darmstadt",
+        focus: "Focus: AI and Machine Learning Technologies",
         download: "View or download my complete CV:",
         contactNote: "I’m always happy to connect — whether you have a project in mind, a question, or just want to say hello.",
         contactNote2: "You can reach me directly by email:",
@@ -117,6 +125,12 @@ function setLanguage(lang) {
     const langLabel = document.querySelector('.lang-label');
     if (langLabel) {
       langLabel.textContent = lang === 'en' ? 'EN | DE' : 'DE | EN';
+    }
+    const cvLink = document.getElementById('cv-link');
+    if (lang === 'en') {
+      cvLink.href = './CV_EN.pdf';
+    } else {
+      cvLink.href = './CV_DE.pdf';
     }
   }
 
