@@ -138,7 +138,7 @@ function showTab(tabId, clickedTab) {
   // Hide all tab contents and remove active class from all tabs
   document.querySelectorAll('.tab-content').forEach(function(content) {
     content.classList.remove('active');
-    content.style.display = 'none';
+    // No longer setting display: none as we're using opacity/visibility in CSS
   });
   
   document.querySelectorAll('.tab').forEach(function(tab) {
@@ -150,12 +150,7 @@ function showTab(tabId, clickedTab) {
   const tabContent = document.getElementById(tabId);
   if (tabContent) {
     tabContent.classList.add('active');
-    tabContent.style.display = 'block';
-    
-    // Scroll to the top of the tab content for better mobile experience
-    setTimeout(() => {
-      tabContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
+    // No longer setting display: block as we're using opacity/visibility in CSS
   }
   
   // If a tab element was clicked (not triggered by keyboard)
@@ -173,8 +168,7 @@ function showTab(tabId, clickedTab) {
     event.target.setAttribute('aria-selected', 'true');
   }
   
-  // Update the URL hash for better navigation
-  window.location.hash = tabId;
+  // Removed hash update to prevent jumping
 }
 
 // Handle button click: update URL with new lang param
@@ -351,6 +345,7 @@ function updateThemeIcon(theme) {
 // Initialize theme toggle when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
+  initHeaderScrollEffect();
   
   // Prevent double-tap zoom on iOS for interactive elements
   const interactiveElements = document.querySelectorAll('.tab, .portfolio-item, button, a');
@@ -363,3 +358,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// Function to handle header scroll effect
+function initHeaderScrollEffect() {
+  const header = document.querySelector('header');
+  const scrollThreshold = 50; // Pixels to scroll before effect activates
+  
+  // Apply scroll effect on page load if already scrolled
+  if (window.scrollY > scrollThreshold) {
+    header.classList.add('scrolled');
+  }
+  
+  // Listen for scroll events
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > scrollThreshold) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+}
