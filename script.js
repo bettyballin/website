@@ -147,8 +147,16 @@ function showTab(tabId, clickedTab) {
   });
   
   // Show the selected tab content and add active class to the clicked tab
-  document.getElementById(tabId).classList.add('active');
-  document.getElementById(tabId).style.display = 'block';
+  const tabContent = document.getElementById(tabId);
+  if (tabContent) {
+    tabContent.classList.add('active');
+    tabContent.style.display = 'block';
+    
+    // Scroll to the top of the tab content for better mobile experience
+    setTimeout(() => {
+      tabContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
   
   // If a tab element was clicked (not triggered by keyboard)
   if (clickedTab) {
@@ -164,12 +172,24 @@ function showTab(tabId, clickedTab) {
     event.target.classList.add('active');
     event.target.setAttribute('aria-selected', 'true');
   }
+  
+  // Update the URL hash for better navigation
+  window.location.hash = tabId;
 }
 
 // Handle button click: update URL with new lang param
 document.addEventListener('DOMContentLoaded', () => {
   const currentLang = getLangFromURL();
   setLanguage(currentLang);
+  
+  // Check for hash in URL to show the correct tab on page load
+  if (window.location.hash) {
+    const tabId = window.location.hash.substring(1);
+    const tabElement = document.getElementById(`tab-${tabId}`);
+    if (tabElement && document.getElementById(tabId)) {
+      showTab(tabId, tabElement);
+    }
+  }
 
   // Update all internal links to preserve ?lang=...
   document.querySelectorAll('a[href]').forEach(link => {
@@ -331,4 +351,15 @@ function updateThemeIcon(theme) {
 // Initialize theme toggle when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
+  
+  // Prevent double-tap zoom on iOS for interactive elements
+  const interactiveElements = document.querySelectorAll('.tab, .portfolio-item, button, a');
+  interactiveElements.forEach(element => {
+    element.addEventListener('touchend', function(e) {
+      // Prevent default only if this is a tap (not a scroll or other gesture)
+      if (e.changedTouches[0].pageX === e.changedTouches[0].screenX) {
+        e.preventDefault();
+      }
+    });
+  });
 });

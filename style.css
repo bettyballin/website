@@ -79,18 +79,19 @@ body {
     transform: scale(1);
     position: absolute;
     top: 20%;
-    left: 42%;
+    left: 50%;
+    transform: translateX(-50%);
     white-space: nowrap;
     animation: flyOut 0.5s linear forwards;
   }
   @keyframes flyOut {
     0% {
       opacity: 0.5;
-      transform: scale(1) translateZ(0);
+      transform: translateX(-50%) scale(1) translateZ(0);
     }
     100% {
       opacity: 0;
-      transform: scale(3.5) translateZ(300px);
+      transform: translateX(-50%) scale(3.5) translateZ(300px);
     }
   }
 
@@ -113,6 +114,9 @@ body {
     border: none;
     font-weight: bold;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-tap-highlight-color: transparent; /* Remove default mobile tap highlight */
+    touch-action: manipulation; /* Optimize for touch */
+    user-select: none; /* Prevent text selection on tap */
   }
 
   .tab:hover,
@@ -153,6 +157,9 @@ body {
     background: var(--bg-color);
     color: var(--text-color);
     padding: 0 1rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
   }
 
   .tab-content a {
@@ -166,7 +173,7 @@ body {
   }
 
   .tab-content.active {
-    display: block;
+    display: block !important; /* Ensure active content is always displayed */
   }
 
   h2 {
@@ -213,9 +220,10 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 4px var(--card-shadow);
     transition: transform 0.3s, box-shadow 0.3s;
+    -webkit-tap-highlight-color: transparent;
   }
   
-  .portfolio-item:hover {
+  .portfolio-item:hover, .portfolio-item:active {
     transform: translateY(-5px);
     box-shadow: 0 4px 8px var(--card-shadow);
   }
@@ -336,19 +344,100 @@ body {
   
   /* Small screens */
   @media (max-width: 480px) {
+    /* Content container */
     .tab-content {
       max-width: 100%;
       padding: 0 1rem;
+      margin-top: 1rem;
     }
-    .portfolio-item {
-      width: 100%; /* Full width for very small screens */
+    
+    /* Header adjustments */
+    header h1 {
+      font-size: 2rem;
+      margin-top: 2rem;
     }
+    
+    header p {
+      font-size: 1rem;
+    }
+    
+    header .slogan {
+      font-size: 1.1rem;
+    }
+    
+    /* Navigation tabs */
+    .tabs {
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 1rem;
+      padding: 0.5rem 0;
+    }
+    
+    .tab {
+      padding: 0.85rem 0.5rem;
+      font-size: 1rem;
+      width: 90%;
+      margin: 0 auto;
+      min-height: 48px; /* Larger touch target size for better accessibility */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Make active tab more visible on mobile */
+    .tab.active {
+      background-color: var(--accent-color);
+      transform: scale(1.05);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .tab-separator {
+      display: none;
+    }
+    
+    /* Profile picture */
     img.profile-pic {
       width: 60%;
       height: auto;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
     }
+    
+    /* Portfolio items */
+    .portfolio-item {
+      width: 100%; /* Full width for very small screens */
+      margin-bottom: 1rem;
+      padding: 1.25rem;
+      min-height: 44px; /* Ensure minimum touch target size */
+    }
+    
     .portfolio-pic {
       height: auto;
+    }
+    
+    /* Theme and language toggles */
+    .theme-toggle-left, .lang-toggle-right {
+      padding: 0.6rem;
+      top: 0.5rem;
+      min-width: 44px;
+      min-height: 44px;
+    }
+    
+    .theme-toggle-left {
+      left: 0.5rem;
+    }
+    
+    .lang-toggle-right {
+      right: 0.5rem;
+      padding: 0.6rem 0.8rem;
+    }
+    
+    .lang-label {
+      font-size: 0.7rem;
+    }
+    
+    /* Adjust slogan animation for mobile */
+    header .slogan-animated {
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 
@@ -401,12 +490,15 @@ label {
 
 input, textarea {
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.75rem;
   border: 2px solid var(--input-border);
-  border-radius: 5px;
-  font-size: 1rem;
+  border-radius: 8px;
+  font-size: 16px; /* Prevent zoom on iOS */
   background-color: var(--bg-color);
   color: var(--text-color);
+  -webkit-appearance: none; /* Remove default styling on iOS */
+  appearance: none;
+  margin-bottom: 0.5rem;
 }
 
 input:focus, textarea:focus {
@@ -418,15 +510,25 @@ button[type="submit"] {
   background-color: var(--accent-color);
   color: var(--header-text);
   border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 5px;
+  padding: 0.85rem 1.5rem;
+  font-size: 16px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.2s;
+  width: 100%;
+  margin-top: 0.5rem;
+  -webkit-appearance: none; /* Remove default styling on iOS */
+  appearance: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 button[type="submit"]:hover {
   background-color: var(--header-bg);
+}
+
+button[type="submit"]:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* Form validation styles */
@@ -499,6 +601,13 @@ input:invalid, textarea:invalid {
     gap: 0.4rem;
   }
   
+  /* Ensure touch targets are large enough */
+  .skill-item {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.7rem;
+    margin-bottom: 0.3rem;
+  }
+  
   .skill-item {
     font-size: 0.8rem;
     padding: 0.3rem 0.6rem;
@@ -567,7 +676,7 @@ input:invalid, textarea:invalid {
 }
 
 .cv-year {
-  flex: 0 0 120px;
+  flex: 0 0 100px;
   font-weight: bold;
   color: var(--text-color);
 }
@@ -595,6 +704,77 @@ input:invalid, textarea:invalid {
   
   .cv-year {
     margin-bottom: 0.5rem;
+    flex: 0 0 auto;
+  }
+  
+  .cv-button {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Additional mobile optimizations for small screens */
+@media (max-width: 480px) {
+  /* Form elements */
+  form {
+    width: 100%;
+  }
+  
+  input, textarea, button[type="submit"] {
+    font-size: 16px; /* Prevent zoom on iOS */
+    padding: 0.8rem;
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  
+  /* Improve readability on small screens */
+  body {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+  }
+  
+  /* CV section */
+  .cv-download, .cv-preview {
+    padding: 1rem;
+  }
+  
+  .cv-item {
+    margin-bottom: 1.2rem;
+  }
+  
+  .cv-year {
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .cv-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Skills section */
+  .skill-category {
+    padding: 0.75rem;
+  }
+  
+  .skill-category h3 {
+    font-size: 1rem;
+  }
+  
+  /* Footer */
+  footer {
+    padding: 1.5rem 1rem;
   }
 }
 /* Theme icon display */

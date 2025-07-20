@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
   <title>Bettina Ballin – IT Consultant</title>
   <meta name="description" content="Bettina Ballin is an IT Consultant specializing in software consulting, AI & ML projects, and software security.">
@@ -50,46 +50,46 @@
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
       </svg>
     </div>
-    <img src="images/profile2.jpg" alt="Profile picture" class="profile-pic" >
+    <img src="images/profile2.jpg" alt="Profile picture" class="profile-pic" loading="eager" fetchpriority="high">
     <div id="lang-toggle" data-tooltip="Deutsch" class="lang-toggle-right">
       <img src="images/globe.svg" alt="Deutsch" id="flag-icon">
       <span class="lang-label">EN | DE</span>
     </div>
     <nav class="tabs" role="tablist">
-      <div class="tab" onclick="showTab('portfolio', this)" role="tab" aria-selected="false" aria-controls="portfolio" tabindex="0" id="tab-portfolio" onkeydown="handleTabKeyPress(event, 'portfolio')">Portfolio</div>
+      <div class="tab active" onclick="showTab('portfolio', this)" role="tab" aria-selected="true" aria-controls="portfolio" tabindex="0" id="tab-portfolio" onkeydown="handleTabKeyPress(event, 'portfolio')">Portfolio</div>
       <div class="tab-separator">|</div>
       <div class="tab" onclick="showTab('zertifikate', this)" data-key="certificates" role="tab" aria-selected="false" aria-controls="zertifikate" tabindex="0" id="tab-zertifikate" onkeydown="handleTabKeyPress(event, 'zertifikate')">CV</div>
       <div class="tab-separator">|</div>
-      <div class="tab active" onclick="showTab('technologien', this)" data-key="technologies" role="tab" aria-selected="true" aria-controls="technologien" tabindex="0" id="tab-technologien" onkeydown="handleTabKeyPress(event, 'technologien')">Technologies</div>
+      <div class="tab" onclick="showTab('technologien', this)" data-key="technologies" role="tab" aria-selected="false" aria-controls="technologien" tabindex="0" id="tab-technologien" onkeydown="handleTabKeyPress(event, 'technologien')">Technologies</div>
       <div class="tab-separator">|</div>
       <div class="tab" onclick="showTab('contact', this)" data-key="contact" role="tab" aria-selected="false" aria-controls="contact" tabindex="0" id="tab-contact" onkeydown="handleTabKeyPress(event, 'contact')">Contact</div>
     </nav>
   </header>
 
-  <div id="portfolio" class="tab-content">
+  <div id="portfolio" class="tab-content active">
     <h2>Portfolio</h2>
     <p data-key="aboutText">I am an IT freelancer with a strong academic and professional background. I hold a Master's degree from TU Darmstadt and have more than 5 years of working experience, mostly as an IT consultant at Software AG and as a researcher on AI and cybersecurity at Fraunhofer SIT. My work spans IT consulting, AI research, and software security.</p>
     <div class="portfolio-grid">        
         <div class="portfolio-item">
-          <img src="images/fraunhofer.png" alt="Fraunhofer SIT" class="bubble-image" width="100" height="80">
+          <img src="images/fraunhofer.png" alt="Fraunhofer SIT" class="bubble-image" width="100" height="80" loading="lazy">
           <h3>Fraunhofer SIT</h3>
           <p class="project-description"  data-key="fraunhofer"></p>
         </div>
         
         <div class="portfolio-item">
-          <img src="images/ptw.png" alt="PTW" class="bubble-image" width="100" height="80">
+          <img src="images/ptw.png" alt="PTW" class="bubble-image" width="100" height="80" loading="lazy">
           <h3>PTW Institut</h3>
           <p class="project-description" data-key="eta"></p>
         </div>
           
         <div class="portfolio-item">
-          <img src="images/sag.png" alt="Software AG" class="bubble-image" width="100" height="80">
+          <img src="images/sag.png" alt="Software AG" class="bubble-image" width="100" height="80" loading="lazy">
           <h3>Software AG</h3>
           <p class="project-description" data-key="sag"></p>
         </div>
 
         <div class="portfolio-item">
-          <img src="images/tud.svg" alt="TU Darmstadt" class="bubble-image" width="100" height="80">
+          <img src="images/tud.svg" alt="TU Darmstadt" class="bubble-image" width="100" height="80" loading="lazy">
           <h3>TU Darmstadt</h3>
           <p class="project-description"  data-key="tu"></p>
         </div>
@@ -165,7 +165,7 @@
     </div>
   </div>
 
-  <div id="technologien" class="tab-content active">
+  <div id="technologien" class="tab-content" style="display:none">
     <h2 data-key="technologies">Technologies</h2>
     <p data-key="techDesc">As an experienced IT consultant and researcher, I have worked with a broad range of technologies in software development, system integration, artificial intelligence, and IT security:</p>
       
