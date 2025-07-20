@@ -341,6 +341,14 @@ function updateThemeIcon(theme) {
     darkIcon.style.display = 'none';
   }
 }
+function startLoading() {
+  const loadingIcon = document.getElementById('loadingIcon');
+  loadingIcon.style.display = 'inline-block'; // Show the loading icon
+}
+function stopLoading() {
+  const loadingIcon = document.getElementById('loadingIcon');
+  loadingIcon.style.display = 'none';
+}
 
 // Initialize theme toggle when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -376,5 +384,23 @@ function initHeaderScrollEffect() {
     } else {
       header.classList.remove('scrolled');
     }
+  });
+
+  // EmailJS
+  const form = document.getElementById('contactForm');
+  const statusDiv = document.getElementById('status');
+
+  // Add an event listener for form submission
+  form.addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent the default form submission
+  startLoading();
+  emailjs.sendForm('service_pu399tt', 'template_7z56hdz', this).then(() => {
+      statusDiv.textContent = 'Success!';
+      form.reset(); // Clear the form fields
+      stopLoading();
+    }, (error) => {
+      statusDiv.textContent = 'Error: '+error.text +" " + error.message + " " + error;
+      stopLoading();
+    });
   });
 }

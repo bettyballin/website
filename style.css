@@ -509,6 +509,22 @@ body {
     font-weight: bold;
   }
 
+  .loading {
+			width: 20px;                   /* Width of the loading icon */
+			height: 20px;                  /* Height of the loading icon */
+			border: 3px solid #f3f3f3;     /* Light border */
+			border-top: 3px solid #3498db; /* Blue top border */
+			border-radius: 50%;            /* Make it circular */
+			animation: spin 1s linear infinite; /* Spin animation */
+			display: inline-block;          /* Inline to align with the button */
+			margin-left: 10px;             /* Space between button and icon */
+		}
+
+		@keyframes spin {
+			0% { transform: rotate(0deg); }
+			100% { transform: rotate(360deg); }
+		}
+
   /* Media queries for responsive design */
   /* Medium screens */
   @media (max-width: 768px) and (min-width: 481px) {
