@@ -93,3 +93,4 @@ function updateThemeIcon(theme) {
     darkIcon.style.display = 'none';
   }
 }
+window.toggleTheme = toggleTheme;

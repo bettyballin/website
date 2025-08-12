@@ -140,26 +140,7 @@ body {
     perspective: 800px; /* Needed for 3D effect */
   }
   header .slogan-animated {
-    display: inline-block;
-    font-family: 'Satisfy', cursive;
-    opacity: 0.8;
-    transform: scale(1);
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    animation: flyOut 0.5s linear forwards;
-  }
-  @keyframes flyOut {
-    0% {
-      opacity: 0.5;
-      transform: translateX(-50%) scale(1) translateZ(0);
-    }
-    100% {
-      opacity: 0;
-      transform: translateX(-50%) scale(3.5) translateZ(300px);
-    }
+    display: none;
   }
 
   .tabs {
@@ -337,6 +318,7 @@ body {
     object-fit: cover;
     border-radius: 15px;
     margin-top: 1rem;
+    margin-bottom: 2rem;
     box-shadow:
       0 15px 35px rgba(0, 0, 0, 0.2),
       0 5px 15px rgba(0, 0, 0, 0.1);

@@ -1,5 +1,10 @@
+// Set the document language based on the URL parameter
 document.documentElement.lang = getLangFromURL();
 
+/**
+ * Translation strings for German (de) and English (en).
+ * Used for dynamic language switching on the website.
+ */
 const translations = {
     de: {
         header: "M.Sc. Informatik – IT Beratung",
@@ -105,7 +110,7 @@ const translations = {
     }
 };
 
-// Get language from URL
+// Get language from URL (?lang=de or ?lang=en)
 function getLangFromURL() {
   const params = new URLSearchParams(window.location.search);
   return params.get('lang') === 'de' ? 'de' : 'en'; // default to 'en'
@@ -122,29 +127,37 @@ function toggleLanguage() {
 
 // Theme functionality moved to theme.js
 
-// Set translated content
+/**
+ * Sets the translated content on the page based on the selected language.
+ * Updates all elements with a data-key attribute and adjusts the CV link.
+ */
 function setLanguage(lang) {
   const trans = translations[lang];
   document.querySelectorAll('[data-key]').forEach(el => {
     const key = el.getAttribute('data-key');
     if (trans[key]) el.textContent = trans[key];
-    });
-    document.getElementById('flag-icon').src = `images/globe.svg`;
-    document.getElementById('flag-icon').alt = lang;
-    
-    // Update the language label
-    const langLabel = document.querySelector('.lang-label');
-    if (langLabel) {
-      langLabel.textContent = lang === 'en' ? 'EN' : 'DE';
-    }
-    const cvLink = document.getElementById('cv-link');
-    if (lang === 'en') {
-      cvLink.href = './CV_EN.pdf';
-    } else {
-      cvLink.href = './CV_DE.pdf';
-    }
+  });
+  document.getElementById('flag-icon').src = `images/globe.svg`;
+  document.getElementById('flag-icon').alt = lang;
+  
+  // Update the language label
+  const langLabel = document.querySelector('.lang-label');
+  if (langLabel) {
+    langLabel.textContent = lang === 'en' ? 'EN' : 'DE';
   }
+  const cvLink = document.getElementById('cv-link');
+  if (lang === 'en') {
+    cvLink.href = './CV_EN.pdf';
+  } else {
+    cvLink.href = './CV_DE.pdf';
+  }
+}
 
+/**
+ * Shows the selected tab and updates tab navigation UI.
+ * @param {string} tabId - The ID of the tab content to show.
+ * @param {HTMLElement} clickedTab - The tab element that was clicked (optional).
+ */
 function showTab(tabId, clickedTab) {
   // Hide all tab contents and remove active class from all tabs
   document.querySelectorAll('.tab-content').forEach(function(content) {
@@ -207,6 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// Tab navigation: add click event listeners to all tab elements
 const tabs = document.querySelectorAll('.tab');
 
 tabs.forEach(tab => {
@@ -216,8 +230,7 @@ tabs.forEach(tab => {
   });
 });
 
-
-// Form validation function
+// Form validation for contact form (simple version)
 function validateForm() {
   let isValid = true;
   const nameInput = document.getElementById('name');
@@ -251,7 +264,10 @@ function validateForm() {
   return isValid;
 }
 
-// Handle keyboard navigation for tabs
+/**
+ * Handles keyboard navigation for tabs (accessibility).
+ * Supports Enter/Space to activate and arrow keys to switch tabs.
+ */
 function handleTabKeyPress(event, tabId) {
   // If Enter or Space is pressed, activate the tab
   if (event.key === 'Enter' || event.key === ' ') {
@@ -277,14 +293,14 @@ function handleTabKeyPress(event, tabId) {
   }
 }
 
-// Language toggle functionality
+// Language toggle button: hover, click, and touch support
 function initLangToggle() {
   const langToggle = document.getElementById('lang-toggle');
   if (!langToggle) return; // Skip if element doesn't exist
   
   const currentLang = getLangFromURL();
   
-  // Add hover effects
+  // Add hover effects to show the alternative language
   langToggle.addEventListener('mouseover', () => {
     const newLang = currentLang === 'en' ? 'de' : 'en';
     if (document.getElementById('flag-icon')) {
@@ -298,39 +314,45 @@ function initLangToggle() {
     }
   });
 
-  // Add click and touch functionality
+  // Add click and touch functionality for toggling language
   langToggle.addEventListener('click', toggleLanguage);
   langToggle.addEventListener('touchend', (e) => {
     e.preventDefault(); // Prevent default to avoid double-tap zoom
     toggleLanguage();
   });
   
-  // Remove unnecessary attributes
+  // Remove unnecessary ARIA attributes
   langToggle.removeAttribute('role');
   langToggle.removeAttribute('aria-haspopup');
   langToggle.removeAttribute('aria-expanded');
 }
 
-// Dark mode functionality moved to theme.js
+// Dark mode and theme icon functionality moved to theme.js
 
-// Theme icon functionality moved to theme.js
+/**
+ * Shows the loading icon (e.g., during async operations).
+ */
 function startLoading() {
   const loadingIcon = document.getElementById('loadingIcon');
   loadingIcon.style.display = 'inline-block'; // Show the loading icon
 }
+
+/**
+ * Hides the loading icon.
+ */
 function stopLoading() {
   const loadingIcon = document.getElementById('loadingIcon');
   loadingIcon.style.display = 'none';
 }
 
-// Initialize everything when DOM is loaded
+// Initialize all main UI features when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   // Set language based on URL parameter
   const currentLang = getLangFromURL();
   setLanguage(currentLang);
   
   // Initialize UI components
-  initThemeToggle();
+  setupThemeToggle();
   initLangToggle();
   initHeaderScrollEffect();
   
@@ -352,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
-  // Add touch handling for links, excluding navigation links and footer links
+  // Add touch handling for links, excluding navigation and external links
   const linkElements = document.querySelectorAll('a:not(.impressum):not([href^="mailto:"]):not([href^="https://"])');
   linkElements.forEach(link => {
     // Only prevent default for internal content links, not navigation links
@@ -378,7 +400,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Function to handle header scroll effect
+/**
+ * Adds a scroll effect to the header and handles contact form submission via EmailJS.
+ * Also manages form validation and loading state.
+ */
 function initHeaderScrollEffect() {
   const header = document.querySelector('header');
   const scrollThreshold = 50; // Pixels to scroll before effect activates
@@ -388,7 +413,7 @@ function initHeaderScrollEffect() {
     header.classList.add('scrolled');
   }
   
-  // Listen for scroll events
+  // Listen for scroll events to add/remove header effect
   window.addEventListener('scroll', () => {
     if (window.scrollY > scrollThreshold) {
       header.classList.add('scrolled');
@@ -397,7 +422,7 @@ function initHeaderScrollEffect() {
     }
   });
 
-  // EmailJS
+  // EmailJS integration for contact form
   const form = document.getElementById('contactForm');
   const statusDiv = document.getElementById('status');
   let emailTimeout;
@@ -407,7 +432,7 @@ function initHeaderScrollEffect() {
     return typeof emailjs !== 'undefined' && emailjs.hasOwnProperty('init');
   }
 
-  // Validate form fields
+  // Validate contact form fields (stricter than validateForm)
   function validateContactForm() {
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
@@ -512,3 +537,8 @@ function initHeaderScrollEffect() {
       });
   });
 }
+
+// Expose functions to global scope for onclick attributes
+window.showTab = showTab;
+window.toggleLanguage = toggleLanguage;
+window.handleTabKeyPress = handleTabKeyPress;
