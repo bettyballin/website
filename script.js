@@ -239,12 +239,16 @@ function validateForm() {
   
   // Clear previous error messages
   document.getElementById('nameError').textContent = '';
+  document.getElementById('nameError').style.display = 'none';
   document.getElementById('emailError').textContent = '';
+  document.getElementById('emailError').style.display = 'none';
   document.getElementById('messageError').textContent = '';
+  document.getElementById('messageError').style.display = 'none';
   
   // Validate name
   if (nameInput.value.length < 2) {
     document.getElementById('nameError').textContent = 'Name must be at least 2 characters';
+    document.getElementById('nameError').style.display = 'block';
     isValid = false;
   }
   
@@ -252,12 +256,14 @@ function validateForm() {
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (!emailPattern.test(emailInput.value)) {
     document.getElementById('emailError').textContent = 'Please enter a valid email address';
+    document.getElementById('emailError').style.display = 'block';
     isValid = false;
   }
   
   // Validate message
   if (messageInput.value.length < 10) {
     document.getElementById('messageError').textContent = 'Message must be at least 10 characters';
+    document.getElementById('messageError').style.display = 'block';
     isValid = false;
   }
   

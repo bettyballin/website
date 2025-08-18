@@ -821,6 +821,7 @@ button[type="submit"]:active {
 /* Form validation and status message styles */
 .error-message {
   color: #E4A56C;
+  display: none;
   font-size: 0.9rem;
   display: none; /* Hidden by default, shown via JavaScript */
   margin-top: 0.5rem;
