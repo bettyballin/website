@@ -1176,6 +1176,15 @@ input:invalid:focus, textarea:invalid:focus, .invalid-input:focus {
   opacity: 0.8;
 }
 
+.custom-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.custom-link:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
   .cv-item {
     flex-direction: column;
