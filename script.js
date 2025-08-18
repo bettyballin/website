@@ -55,7 +55,38 @@ const translations = {
         contactHeading: "Kontakt mit mir",
         contactText: "Wenn Sie per Formular auf der Website oder per E-Mail Kontakt mit mir aufnehmen, werden Ihre angegebenen Daten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen sechs Monate bei mir gespeichert. Diese Daten gebe ich nicht ohne Ihre Einwilligung weiter.",
         rightsHeading: "Ihre Rechte",
-        rightsText: "Ihnen stehen grundsätzlich die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerruf und Widerspruch zu. Wenn Sie glauben, dass die Verarbeitung Ihrer Daten gegen das Datenschutzrecht verstößt oder Ihre datenschutzrechtlichen Ansprüche in sonstiger Weise verletzt worden sind, können Sie sich bei der Aufsichtsbehörde beschweren."
+        rightsText: "Ihnen stehen grundsätzlich die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerruf und Widerspruch zu. Wenn Sie glauben, dass die Verarbeitung Ihrer Daten gegen das Datenschutzrecht verstößt oder Ihre datenschutzrechtlichen Ansprüche in sonstiger Weise verletzt worden sind, können Sie sich bei der Aufsichtsbehörde beschweren.",
+        nameError: "Der Name muss mindestens 2 Zeichen lang sein",
+        emailError: "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+        messageError: "Die Nachricht muss mindestens 10 Zeichen lang sein",
+        sendMeMsg: "Schreiben Sie mir eine Nachricht",
+        nameLabel: "Name",
+        namePlaceholder: "Geben Sie Ihren Namen ein",
+        emailLabel: "E-Mail",
+        emailPlaceholder: "Geben Sie Ihre E-Mail-Adresse ein",
+        messageLabel: "Nachricht",
+        messagePlaceholder: "Geben Sie Ihre Nachricht hier ein...",
+        sendBtn: "Senden",
+        letsConnect: "Lass uns vernetzen",
+        profNetwork: "Berufliches Netzwerk",
+        linkedinProfile: "LinkedIn Profil",
+        codeRepo: "Code-Repository",
+        githubProfile: "GitHub Profil",
+        responseTime: "Antwortet in der Regel innerhalb von 24 Stunden",
+        sendMeMsg: "Schreiben Sie mir eine Nachricht",
+        nameLabel: "Name",
+        namePlaceholder: "Geben Sie Ihren Namen ein",
+        emailLabel: "E-Mail",
+        emailPlaceholder: "Geben Sie Ihre E-Mail-Adresse ein",
+        messageLabel: "Nachricht",
+        messagePlaceholder: "Geben Sie Ihre Nachricht hier ein...",
+        sendBtn: "Senden",
+        letsConnect: "Lass uns vernetzen",
+        profNetwork: "Berufliches Netzwerk",
+        linkedinProfile: "LinkedIn Profil",
+        codeRepo: "Code-Repository",
+        githubProfile: "GitHub Profil",
+        responseTime: "Antwortet in der Regel innerhalb von 24 Stunden"
     },
     en: {
         header: "M.Sc. Informatik – IT Consultant",
@@ -106,7 +137,38 @@ const translations = {
         contactHeading: "Contacting Me",
         contactText: "If you contact me via the form on the website or by e-mail, the data you provide will be stored for six months for the purpose of processing the request and in case of follow-up questions. This data will not be passed on without your consent.",
         rightsHeading: "Your Rights",
-        rightsText: "You are generally entitled to the rights of access, rectification, deletion, restriction, data portability, revocation, and objection. If you believe that the processing of your data violates data protection law or your data protection rights have been infringed in any other way, you can lodge a complaint with the supervisory authority."
+        rightsText: "You are generally entitled to the rights of access, rectification, deletion, restriction, data portability, revocation, and objection. If you believe that the processing of your data violates data protection law or your data protection rights have been infringed in any other way, you can lodge a complaint with the supervisory authority.",
+        nameError: "Name must be at least 2 characters",
+        emailError: "Please enter a valid email address",
+        messageError: "Message must be at least 10 characters",
+        sendMeMsg: "Send me a message",
+        nameLabel: "Name",
+        namePlaceholder: "Enter your name",
+        emailLabel: "E-Mail",
+        emailPlaceholder: "Enter your email address",
+        messageLabel: "Message",
+        messagePlaceholder: "Enter your message here...",
+        sendBtn: "Send Message",
+        letsConnect: "Let's Connect",
+        profNetwork: "Professional Network",
+        linkedinProfile: "LinkedIn Profile",
+        codeRepo: "Code Repository",
+        githubProfile: "GitHub Profile",
+        responseTime: "Usually responds within 24 hours",
+        sendMeMsg: "Send me a message",
+        nameLabel: "Name",
+        namePlaceholder: "Enter your name",
+        emailLabel: "E-Mail",
+        emailPlaceholder: "Enter your email address",
+        messageLabel: "Message",
+        messagePlaceholder: "Enter your message here...",
+        sendBtn: "Send Message",
+        letsConnect: "Let's Connect",
+        profNetwork: "Professional Network",
+        linkedinProfile: "LinkedIn Profile",
+        codeRepo: "Code Repository",
+        githubProfile: "GitHub Profile",
+        responseTime: "Usually responds within 24 hours"
     }
 };
 
@@ -135,7 +197,19 @@ function setLanguage(lang) {
   const trans = translations[lang];
   document.querySelectorAll('[data-key]').forEach(el => {
     const key = el.getAttribute('data-key');
-    if (trans[key]) el.textContent = trans[key];
+    // Handle placeholders and button text
+    if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+      if (el.hasAttribute("placeholder") && trans[key]) {
+        el.placeholder = trans[key];
+      }
+      if (el.type === "submit" && trans[key]) {
+        el.value = trans[key];
+      }
+    } else if (el.classList.contains("button-text") && trans[key]) {
+      el.textContent = trans[key];
+    } else if (trans[key]) {
+      el.textContent = trans[key];
+    }
   });
   document.getElementById('flag-icon').src = `images/globe.svg`;
   document.getElementById('flag-icon').alt = lang;
@@ -247,7 +321,8 @@ function validateForm() {
   
   // Validate name
   if (nameInput.value.length < 2) {
-    document.getElementById('nameError').textContent = 'Name must be at least 2 characters';
+    const lang = getLangFromURL();
+    document.getElementById('nameError').textContent = translations[lang].nameError;
     document.getElementById('nameError').style.display = 'block';
     isValid = false;
   }
@@ -255,14 +330,16 @@ function validateForm() {
   // Validate email
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (!emailPattern.test(emailInput.value)) {
-    document.getElementById('emailError').textContent = 'Please enter a valid email address';
+    const lang = getLangFromURL();
+    document.getElementById('emailError').textContent = translations[lang].emailError;
     document.getElementById('emailError').style.display = 'block';
     isValid = false;
   }
   
   // Validate message
   if (messageInput.value.length < 10) {
-    document.getElementById('messageError').textContent = 'Message must be at least 10 characters';
+    const lang = getLangFromURL();
+    document.getElementById('messageError').textContent = translations[lang].messageError;
     document.getElementById('messageError').style.display = 'block';
     isValid = false;
   }

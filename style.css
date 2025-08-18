@@ -1177,15 +1177,6 @@ textarea:invalid:focus,
   opacity: 0.8;
 }
 
-.custom-link {
-  text-decoration: none;
-  color: inherit;
-}
-
-.custom-link:hover {
-  text-decoration: underline;
-}
-
 @media (max-width: 768px) {
   .cv-item {
     flex-direction: column;
@@ -1852,4 +1843,44 @@ input:focus, textarea:focus {
   .contact-details {
     align-items: center;
   }
+}
+
+.custom-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  font-weight: normal !important;
+  width: 100%;
+  height: 100%;
+}
+
+.custom-link:hover {
+  text-decoration: none;
+}
+
+/* Portfolio items with links should look identical to non-linked items */
+.portfolio-item .custom-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.portfolio-item .custom-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Only show link indication on hover through subtle visual cues */
+.portfolio-item:hover .custom-link {
+  cursor: pointer;
+}
+
+/* Add a subtle visual hint that this is clickable on hover */
+.portfolio-item:hover .custom-link h3 {
+  color: var(--header-bg);
+  transition: color 0.3s ease;
+}
+
+.portfolio-item:hover .custom-link .project-description {
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
