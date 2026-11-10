@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="{{ t.lang }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% block title %}{{ t.title }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ t.description }}{% endblock %}">
+  <meta name="author" content="{{ site.name }}">
+  <meta name="robots" content="{% block robots %}index, follow{% endblock %}">
+  <meta name="theme-color" content="#f6faf9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f1b1c" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="{{ site.domain }}{% block canonical %}{{ t.path }}{% endblock %}">
+{% block alternates %}
+  <link rel="alternate" hreflang="de" href="{{ site.domain }}/">
+  <link rel="alternate" hreflang="en" href="{{ site.domain }}/en/">
+  <link rel="alternate" hreflang="x-default" href="{{ site.domain }}/">
+{% endblock %}
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:url" content="{{ site.domain }}{{ self.canonical() }}">
+  <meta property="og:title" content="{{ self.title() }}">
+  <meta property="og:description" content="{% block og_description %}{{ t.og_description }}{% endblock %}">
+  <meta property="og:image" content="{{ site.domain }}{{ site.og_image }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ site.name }} – {{ t.job_title }}">
+  <meta property="og:locale" content="{{ 'de_DE' if t.lang == 'de' else 'en_GB' }}">
+  <meta property="og:locale:alternate" content="{{ 'en_GB' if t.lang == 'de' else 'de_DE' }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ self.title() }}">
+  <meta name="twitter:description" content="{{ self.og_description() }}">
+  <meta name="twitter:image" content="{{ site.domain }}{{ site.og_image }}">
+
+  <link rel="icon" href="{{ rel }}favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="{{ rel }}favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="{{ rel }}apple-touch-icon.png">
+
+  <link rel="preload" href="{{ rel }}assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ rel }}assets/fonts/atkinson-hyperlegible-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{{ rel }}assets/css/site.css">
+  <!-- Applies the saved light/dark theme before first paint; must stay synchronous -->
+  <script src="{{ rel }}assets/js/theme.js"></script>
+{% block head_extra %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  <a class="skip-link" href="#main">{{ t.skip }}</a>
+
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="{{ links.home }}">{{ site.name }}</a>
+      <nav class="topnav" aria-label="{{ 'Hauptnavigation' if t.lang == 'de' else 'Main navigation' }}">
+{% block nav %}
+        <ul>
+{% for href, label in t.nav %}
+          <li><a href="{{ links.home }}{{ href }}">{{ label }}</a></li>
+{% endfor %}
+        </ul>
+{% endblock %}
+      </nav>
+      <div class="controls">
+        <a class="lang-switch" href="{% block switch_href %}{{ links.other_home }}{% endblock %}" lang="{{ t.other_lang }}" hreflang="{{ t.other_lang }}" aria-label="{{ t.switch_aria }}">{{ t.switch_label }}</a>
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="{{ t.theme_aria }}" aria-pressed="false">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+{% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p class="signature" aria-hidden="true">Bettina Ballin</p>
+      <p class="footer-meta">&copy; <span id="year">{{ site.year }}</span> {{ site.name }}</p>
+      <ul class="footer-links">
+        <li><a href="{{ links.legal }}">{{ t.footer_impressum }}</a></li>
+        <li><a href="{{ links.legal }}#{{ 'datenschutz' if t.lang == 'de' else 'privacy' }}">{{ t.footer_privacy }}</a></li>
+        <li><a href="{{ self.switch_href() }}" lang="{{ t.other_lang }}" hreflang="{{ t.other_lang }}">{{ t.switch_label }}</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="{{ rel }}assets/js/site.js" defer></script>
+</body>
+</html>

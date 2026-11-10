@@ -10,14 +10,14 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2");
+  src: url("../fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2");
 }
 @font-face {
   font-family: "Atkinson Hyperlegible";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("/assets/fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");
+  src: url("../fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");
 }
 /* Signature. High Spirited (Octotype / Thomas Boucherie) is free for personal use only:
    get the commercial web licence, then subset the TTF to the signature glyphs:
@@ -27,7 +27,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/assets/fonts/high-spirited-signature.woff2") format("woff2");
+  src: url("../fonts/high-spirited-signature.woff2") format("woff2");
 }
 
 /* ---------- tokens ---------- */
