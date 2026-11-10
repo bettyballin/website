@@ -58,7 +58,7 @@ DE = {
             "text": "Vom Einseiter für das Kleinunternehmen bis zur Webanwendung mit Login – schnell, barrierearm und von Anfang an datenschutzkonform, inklusive Impressum, Datenschutzerklärung und Hosting-Einrichtung.",
             "items": [
                 "Konzept, Gestaltung und Umsetzung",
-                "Statische Seiten, CMS oder individuelle Webanwendung",
+                "Statische Seiten, WordPress oder individuelle Webanwendung",
                 "Hosting, Domain, E-Mail und Deployment",
                 "Performance, Barrierefreiheit, Wartung",
             ],
@@ -127,6 +127,20 @@ DE = {
     "projects_intro": "Eine Auswahl – weitere Referenzen auf Anfrage.",
     "projects": [
         {
+            "title": "Energieberater Ramirez",
+            "text": "Website für einen Energieberater in Schlüchtern: vier Leistungsseiten, Förder-FAQ, Kontaktformular und lokale Suchmaschinenoptimierung – schnell, barrierearm, ohne Tracking.",
+            "tags": ["HTML/CSS", "JavaScript", "SEO", "Hosting"],
+            "href": "https://energieberater-ramirez.de",
+            "link_label": "energieberater-ramirez.de",
+        },
+        {
+            "title": "MAMEI Elektronik",
+            "text": "Website für einen Telekom Partner Shop in der Rhön: Leistungen, Terminanfrage, Öffnungszeiten und eine Unterseite für Baumontage – zuerst fürs Handy gedacht.",
+            "tags": ["HTML/CSS", "JavaScript", "Formulare", "Hosting"],
+            "href": "https://bettyballin.github.io/mamei",
+            "link_label": "Website ansehen",
+        },
+        {
             "title": "Wilde Holzschönheiten",
             "text": "Website für ein Kleinunternehmen: Konzept, Gestaltung, Umsetzung und Hosting-Einrichtung – schlank, schnell und ohne Tracking.",
             "tags": ["HTML/CSS", "JavaScript", "Hosting"],
@@ -136,7 +150,7 @@ DE = {
         {
             "title": "KI-Sicherheit und Anomalieerkennung",
             "text": "Forschung am Fraunhofer SIT: Erkennung von Anomalien in Systemdaten, Schwachstellenanalysen von KI-Systemen, Veröffentlichungen zu sicherem Systemdesign.",
-            "tags": ["Python", "TensorFlow", "Threat Modeling"],
+            "tags": ["Python", "Deep Learning", "Threat Modeling"],
             "href": "",
             "link_label": "",
         },
@@ -188,21 +202,20 @@ DE = {
     "legend": [("solid", "täglich im Einsatz"), ("soft", "sichere Anwendung"), ("outline", "Grundlagen")],
     "skills": [
         ("Programmieren und Backend", [
-            ("solid", "Python"), ("solid", "Java"), ("solid", "JavaScript"), ("solid", "REST / SOAP"), ("solid", "webMethods"), ("solid", "Git"),
-            ("soft", "Spring Boot"), ("soft", "Flask"), ("soft", "SQL"), ("soft", "Docker"), ("soft", "C/C++"),
+            ("solid", "Python"), ("solid", "Java"), ("solid", "JavaScript"), ("solid", "REST / SOAP"), ("solid", "Git"), ("solid", "SQL"), ("solid", "Docker"),
+            ("soft", "webMethods"), ("soft", "Spring Boot"), ("soft", "Flask"), ("soft", "C/C++"),
         ]),
         ("Web", [
-            ("solid", "HTML/CSS"), ("solid", "Barrierefreiheit"), ("solid", "Hosting und Deployment"),
-            ("soft", "Angular"), ("soft", "jQuery"), ("soft", "WordPress"), ("outline", "Flutter"),
+            ("solid", "HTML/CSS"), ("solid", "Barrierefreiheit"), ("solid", "Hosting und Deployment"), ("solid", "WordPress"),
+            ("soft", "Angular"), ("soft", "jQuery"), ("outline", "Flutter"),
         ]),
         ("KI und Machine Learning", [
-            ("solid", "TensorFlow"), ("solid", "Deep Learning"), ("solid", "Anomalieerkennung"),
-            ("soft", "PyTorch"), ("soft", "Computer Vision"), ("soft", "NLP"), ("soft", "LLM-APIs"),
+            ("solid", "Deep Learning"), ("solid", "NLP"), ("solid", "LLM-APIs"),
+            ("soft", "TensorFlow"), ("soft", "PyTorch"), ("soft", "Anomalieerkennung"), ("soft", "Computer Vision"),
         ]),
         ("Sicherheit und Datenschutz", [
-            ("solid", "Threat Modeling"), ("solid", "Security Code Review"), ("solid", "Schwachstellenbewertung"),
-            ("solid", "DSGVO"), ("solid", "AVV und SCC"), ("solid", "ISMS"),
-            ("soft", "ISO/IEC 27001"), ("soft", "NIS2 / BSIG"), ("soft", "BSI C5"), ("soft", "Pentesting"), ("soft", "KI-Verordnung"),
+            ("solid", "Security Code Review"), ("solid", "DSGVO"), ("solid", "ISO/IEC 27001"), ("solid", "NIS2 / BSIG"), ("solid", "KI-Verordnung"),
+            ("soft", "Threat Modeling"), ("soft", "Schwachstellenbewertung"), ("soft", "AVV und SCC"), ("soft", "ISMS"), ("soft", "BSI C5"), ("soft", "Pentesting"),
         ]),
     ],
 
@@ -288,7 +301,7 @@ EN = {
             "text": "From a one-pager for a small business to a web application with login – fast, accessible and privacy-compliant from day one, including legal notice, privacy policy and hosting setup.",
             "items": [
                 "Concept, design and implementation",
-                "Static sites, CMS or custom web application",
+                "Static sites, WordPress or custom web application",
                 "Hosting, domain, email and deployment",
                 "Performance, accessibility, maintenance",
             ],
@@ -357,6 +370,20 @@ EN = {
     "projects_intro": "A selection – further references on request.",
     "projects": [
         {
+            "title": "Energieberater Ramirez",
+            "text": "Website for an energy consultant in Schlüchtern: four service pages, a funding FAQ, contact form and local SEO – fast, accessible, no tracking.",
+            "tags": ["HTML/CSS", "JavaScript", "SEO", "Hosting"],
+            "href": "https://energieberater-ramirez.de",
+            "link_label": "energieberater-ramirez.de",
+        },
+        {
+            "title": "MAMEI Elektronik",
+            "text": "Website for a Telekom partner shop in the Rhön region: services, appointment requests, opening hours and a sub-page for installation work – designed for phones first.",
+            "tags": ["HTML/CSS", "JavaScript", "Forms", "Hosting"],
+            "href": "https://bettyballin.github.io/mamei",
+            "link_label": "View website",
+        },
+        {
             "title": "Wilde Holzschönheiten",
             "text": "Website for a small business: concept, design, implementation and hosting setup – lean, fast and without tracking.",
             "tags": ["HTML/CSS", "JavaScript", "Hosting"],
@@ -366,7 +393,7 @@ EN = {
         {
             "title": "AI security and anomaly detection",
             "text": "Research at Fraunhofer SIT: detecting anomalies in system data, vulnerability analyses of AI systems, publications on secure system design.",
-            "tags": ["Python", "TensorFlow", "Threat modelling"],
+            "tags": ["Python", "Deep learning", "Threat modelling"],
             "href": "",
             "link_label": "",
         },
@@ -418,21 +445,20 @@ EN = {
     "legend": [("solid", "daily tools"), ("soft", "working knowledge"), ("outline", "basics")],
     "skills": [
         ("Programming and backend", [
-            ("solid", "Python"), ("solid", "Java"), ("solid", "JavaScript"), ("solid", "REST / SOAP"), ("solid", "webMethods"), ("solid", "Git"),
-            ("soft", "Spring Boot"), ("soft", "Flask"), ("soft", "SQL"), ("soft", "Docker"), ("soft", "C/C++"),
+            ("solid", "Python"), ("solid", "Java"), ("solid", "JavaScript"), ("solid", "REST / SOAP"), ("solid", "Git"), ("solid", "SQL"), ("solid", "Docker"),
+            ("soft", "webMethods"), ("soft", "Spring Boot"), ("soft", "Flask"), ("soft", "C/C++"),
         ]),
         ("Web", [
-            ("solid", "HTML/CSS"), ("solid", "Accessibility"), ("solid", "Hosting and deployment"),
-            ("soft", "Angular"), ("soft", "jQuery"), ("soft", "WordPress"), ("outline", "Flutter"),
+            ("solid", "HTML/CSS"), ("solid", "Accessibility"), ("solid", "Hosting and deployment"), ("solid", "WordPress"),
+            ("soft", "Angular"), ("soft", "jQuery"), ("outline", "Flutter"),
         ]),
         ("AI and machine learning", [
-            ("solid", "TensorFlow"), ("solid", "Deep learning"), ("solid", "Anomaly detection"),
-            ("soft", "PyTorch"), ("soft", "Computer vision"), ("soft", "NLP"), ("soft", "LLM APIs"),
+            ("solid", "Deep learning"), ("solid", "NLP"), ("solid", "LLM APIs"),
+            ("soft", "TensorFlow"), ("soft", "PyTorch"), ("soft", "Anomaly detection"), ("soft", "Computer vision"),
         ]),
         ("Security and data protection", [
-            ("solid", "Threat modelling"), ("solid", "Security code review"), ("solid", "Vulnerability assessment"),
-            ("solid", "GDPR"), ("solid", "DPAs and SCCs"), ("solid", "ISMS"),
-            ("soft", "ISO/IEC 27001"), ("soft", "NIS2 / BSIG"), ("soft", "BSI C5"), ("soft", "Pentesting"), ("soft", "EU AI Act"),
+            ("solid", "Security code review"), ("solid", "GDPR"), ("solid", "ISO/IEC 27001"), ("solid", "NIS2 / BSIG"), ("solid", "EU AI Act"),
+            ("soft", "Threat modelling"), ("soft", "Vulnerability assessment"), ("soft", "DPAs and SCCs"), ("soft", "ISMS"), ("soft", "BSI C5"), ("soft", "Pentesting"),
         ]),
     ],
 
