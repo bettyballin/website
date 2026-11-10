@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% set ids = {
   'services':   t.nav[0][0][1:],
-  'approach':   t.nav[1][0][1:],
+  'projects':   t.nav[1][0][1:],
   'background': t.nav[2][0][1:],
   'skills':     t.nav[3][0][1:],
-  'contact':    t.nav[4][0][1:]
+  'contact':    t.nav[4][0][1:],
+  'approach':   'arbeitsweise' if t.lang == 'de' else 'approach'
 } %}
 {% block head_extra %}
   <script type="application/ld+json">
@@ -26,7 +27,7 @@
       "name": "T.I.S.P. – TeleTrusT Information Security Professional",
       "recognizedBy": { "@type": "Organization", "name": "TÜV Rheinland" }
     },
-    "knowsAbout": ["GDPR", "Data protection", "Information security management", "ISO/IEC 27001", "NIS2", "EU AI Act", "Software security", "Machine learning"],
+    "knowsAbout": ["Web development", "Software development", "Java", "Python", "Systems integration", "Machine learning", "IT security", "GDPR", "Information security management"],
     "knowsLanguage": ["de", "en"],
     "sameAs": ["{{ site.linkedin }}", "{{ site.github }}"]
   }
@@ -80,24 +81,49 @@
       </div>
     </section>
 
-    <section id="{{ ids.approach }}" class="section section-tint">
+    <section id="{{ ids.projects }}" class="section section-tint">
       <div class="wrap">
         <div class="section-head">
-          <h2>{{ t.approach_title }}</h2>
-          <p>{{ t.approach_intro }}</p>
+          <h2>{{ t.projects_title }}</h2>
+          <p>{{ t.projects_intro }}</p>
         </div>
-        <ol class="steps">
-{% for title, text in t.approach %}
-          <li>
-            <h3>{{ title }}</h3>
-            <p>{{ text }}</p>
-          </li>
+        <div class="projects">
+{% for p in t.projects %}
+          <article class="project">
+            <h3>{{ p.title }}</h3>
+            <p>{{ p.text }}</p>
+            <ul class="tags">
+{% for tag in p.tags %}
+              <li>{{ tag }}</li>
 {% endfor %}
-        </ol>
+            </ul>
+{% if p.href %}
+            <p class="project-link"><a href="{{ p.href }}" target="_blank" rel="noopener">{{ p.link_label }}</a></p>
+{% endif %}
+          </article>
+{% endfor %}
+        </div>
+        <p class="aside-note">{{ t.projects_more }} <a href="{{ site.github }}" target="_blank" rel="noopener">{{ t.projects_more_link }}</a>.</p>
       </div>
     </section>
 
-    <section id="{{ ids.background }}" class="section wrap">
+    <section id="{{ ids.approach }}" class="section wrap">
+      <div class="section-head">
+        <h2>{{ t.approach_title }}</h2>
+        <p>{{ t.approach_intro }}</p>
+      </div>
+      <ol class="steps">
+{% for title, text in t.approach %}
+        <li>
+          <h3>{{ title }}</h3>
+          <p>{{ text }}</p>
+        </li>
+{% endfor %}
+      </ol>
+    </section>
+
+    <section id="{{ ids.background }}" class="section section-tint">
+      <div class="wrap">
       <div class="section-head">
         <h2>{{ t.background_title }}</h2>
       </div>
@@ -131,10 +157,11 @@
           </p>
         </aside>
       </div>
+      </div>
     </section>
 
-    <section id="{{ ids.skills }}" class="section section-tint">
-      <div class="wrap">
+    <section id="{{ ids.skills }}" class="section wrap">
+      <div>
         <div class="section-head">
           <h2>{{ t.skills_title }}</h2>
           <p>{{ t.skills_intro }}</p>
@@ -156,11 +183,6 @@
           </div>
 {% endfor %}
         </div>
-        <p class="aside-note"><strong>{{ t.side_title }}.</strong> {{ t.side_text }}
-{% for href, label in t.side_links %}
-          <a href="{{ href }}" target="_blank" rel="noopener">{{ label }}</a>{{ " ·" if not loop.last }}
-{% endfor %}
-        </p>
       </div>
     </section>
 

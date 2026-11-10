@@ -1,6 +1,6 @@
 /* bballin.me – redesign 2026
    Type: Atkinson Hyperlegible 400/700 (Braille Institute, OFL) for everything,
-         Satisfy only for the signature in the footer.
+         High Spirited (Octotype, commercial licence) only for the signature in the footer.
    Colour: one teal accent, used for links, focus, chips and the hero backdrop.
    No gradients, no shadows, no cards – rhythm and rules carry the structure. */
 
@@ -19,12 +19,15 @@
   font-display: swap;
   src: url("/assets/fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");
 }
+/* Signature. High Spirited (Octotype / Thomas Boucherie) is free for personal use only:
+   get the commercial web licence, then subset the TTF to the signature glyphs:
+   pyftsubset "High Spirited.ttf" --text="Bettina Ballin" --flavor=woff2 --output-file=high-spirited-signature.woff2 */
 @font-face {
-  font-family: "Satisfy";
+  font-family: "High Spirited";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/assets/fonts/satisfy-latin-400-normal.woff2") format("woff2");
+  src: url("/assets/fonts/high-spirited-signature.woff2") format("woff2");
 }
 
 /* ---------- tokens ---------- */
@@ -247,12 +250,23 @@ body::before {
 .section-head h2 { margin-bottom: 0.75rem; }
 .section-head p { color: var(--ink-2); font-size: var(--step-1); line-height: 1.5; }
 
-/* services: two columns, rule between rows */
+/* services: three columns on wide screens, two in between, one on phones */
 .services {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2.5rem 3.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.5rem 2.75rem;
 }
+@media (max-width: 1000px) { .services { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* projects */
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.25rem 3rem; }
+.project { border-top: 2px solid var(--teal); padding-top: 1rem; }
+.project h3 { margin-bottom: 0.5rem; }
+.project > p { color: var(--ink-2); margin-bottom: 0.75rem; }
+.tags { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tags li { font-size: var(--step--1); color: var(--ink-3); border: 1px solid var(--line); border-radius: 999px; padding: 0.15rem 0.6rem; }
+.project-link { margin-top: 0.75rem; font-size: var(--step--1); }
+@media (max-width: 700px) { .projects { grid-template-columns: 1fr; } }
 .service h3 { margin-bottom: 0.6rem; }
 .service > p { color: var(--ink-2); margin-bottom: 0.9rem; }
 .service ul { list-style: none; }
@@ -341,7 +355,7 @@ body::before {
 /* footer */
 .footer { border-top: 1px solid var(--line); padding-block: 2.5rem calc(2.5rem + env(safe-area-inset-bottom, 0px)); }
 .footer-inner { display: grid; grid-template-columns: 1fr auto; gap: 0.5rem 2rem; align-items: center; }
-.signature { font-family: "Satisfy", cursive; font-size: 1.9rem; color: var(--teal-ink); margin: 0; grid-column: 1 / -1; }
+.signature { font-family: "High Spirited", "Snell Roundhand", "Segoe Script", cursive; font-size: 2.4rem; line-height: 1.1; color: var(--teal-ink); margin: 0; grid-column: 1 / -1; }
 .footer-meta { color: var(--ink-3); font-size: var(--step--1); margin: 0; }
 .footer-links { list-style: none; display: flex; flex-wrap: wrap; gap: 1.25rem; font-size: var(--step--1); }
 

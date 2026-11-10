@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /contact.php
-Disallow: /assets/fonts/
-
-Sitemap: https://bballin.me/sitemap.xml

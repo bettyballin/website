@@ -68,7 +68,12 @@ Delete from `/website`: `script.js`, `theme.js`, `style.css`, `german.tex`,
 ## Design notes
 
 - Type: Atkinson Hyperlegible 400/700 (Braille Institute, OFL) for everything;
-  Satisfy only for the signature in the footer. Both self-hosted.
+  High Spirited (Octotype / Thomas Boucherie) only for the signature in the
+  footer. Both self-hosted. **High Spirited is free for personal use only** –
+  the file is not in this repo. Buy the commercial web licence
+  (octotypeone@gmail.com), then subset the TTF and drop it in:
+  `pip3 install fonttools brotli && pyftsubset "High Spirited.ttf" --text="Bettina Ballin" --flavor=woff2 --output-file=site/assets/fonts/high-spirited-signature.woff2`
+  Until then the signature falls back to a system script face.
 - Colour: paper `#f6faf9`, ink `#16292b`, one teal accent `#2a7b7e` (links,
   focus, chips, hero backdrop). Dark mode follows the OS and can be toggled;
   the choice is stored in localStorage (`theme`) – mentioned in the privacy policy.
@@ -82,14 +87,16 @@ Delete from `/website`: `script.js`, `theme.js`, `style.css`, `german.tex`,
 - [ ] Rotate the Strato SFTP password and purge `.vscode/sftp.json` and
       `german.tex` from git history (`git filter-repo --invert-paths --path .vscode/sftp.json --path german.tex`).
 - [ ] Create the `website@bballin.me` sender address; send one test message.
+- [ ] Add the licensed `high-spirited-signature.woff2` (see Design notes) and keep the licence confirmation in `site/assets/fonts/`.
 - [ ] Accept/download the Strato AVV (Kundenlogin → Datenschutz) – the privacy
       policy says one is in place.
 - [ ] Check that https://wildeholzschoenheiten.de is still online (linked under Skills).
 - [ ] Update `CV_DE.pdf` / `CV_EN.pdf` – they still say "IT Consultant".
-- [ ] Review all copy in `src/content.py`: the service descriptions, the
-      "Arbeitsweise" steps and the timeline wording are drafts. The current
-      role is described as "externe DSB für ein SaaS-Unternehmen der
-      Energiebranche" – name the client only if agreed.
+- [ ] Review all copy in `src/content.py`: the six service descriptions, the
+      "Arbeitsweise" steps, the four project entries and the timeline wording
+      are drafts. Add further client sites to `projects` once the clients are
+      fine with being named; the DPO engagement is described as "ein
+      SaaS-Unternehmen der Energiebranche" – name the client only if agreed.
 - [ ] Chip levels (solid / soft / outline) for the compliance and security
       entries are guesses.
 - [ ] Reference letters stay publicly linked under "Hintergrund" – deliberate
