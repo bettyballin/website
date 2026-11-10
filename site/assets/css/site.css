@@ -1,6 +1,6 @@
 /* bballin.me – redesign 2026
    Type: Atkinson Hyperlegible 400/700 (Braille Institute, OFL) for everything,
-         High Spirited (Octotype, commercial licence) only for the signature in the footer.
+         Mr De Haviland (Sudtipos, OFL) only for the signature in the footer.
    Colour: one teal accent, used for links, focus, chips and the hero backdrop.
    No gradients, no shadows, no cards – rhythm and rules carry the structure. */
 
@@ -19,15 +19,13 @@
   font-display: swap;
   src: url("../fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");
 }
-/* Signature. High Spirited (Octotype / Thomas Boucherie) is free for personal use only:
-   get the commercial web licence, then subset the TTF to the signature glyphs:
-   pyftsubset "High Spirited.ttf" --text="Bettina Ballin" --flavor=woff2 --output-file=high-spirited-signature.woff2 */
+/* Signature: Mr De Haviland (Sudtipos, OFL – free for commercial use), self-hosted. */
 @font-face {
-  font-family: "High Spirited";
+  font-family: "Mr De Haviland";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/high-spirited-signature.woff2") format("woff2");
+  src: url("../fonts/mr-de-haviland-latin-400-normal.woff2") format("woff2");
 }
 
 /* ---------- tokens ---------- */
@@ -202,7 +200,7 @@ body::before {
   padding-block: clamp(3rem, 8vw, 6rem) clamp(2rem, 5vw, 4rem);
 }
 .kicker { color: var(--ink-2); margin-bottom: 1.25rem; font-size: var(--step--1); }
-.hero h1 { max-width: 14ch; margin-bottom: 1.25rem; }
+.hero h1 { max-width: 24ch; margin-bottom: 1.25rem; hyphens: manual; -webkit-hyphens: manual; }
 .lead { font-size: var(--step-1); line-height: 1.5; color: var(--ink-2); max-width: 52ch; margin-bottom: 1.75rem; }
 .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
@@ -355,7 +353,7 @@ body::before {
 /* footer */
 .footer { border-top: 1px solid var(--line); padding-block: 2.5rem calc(2.5rem + env(safe-area-inset-bottom, 0px)); }
 .footer-inner { display: grid; grid-template-columns: 1fr auto; gap: 0.5rem 2rem; align-items: center; }
-.signature { font-family: "High Spirited", "Snell Roundhand", "Segoe Script", cursive; font-size: 2.4rem; line-height: 1.1; color: var(--teal-ink); margin: 0; grid-column: 1 / -1; }
+.signature { font-family: "Mr De Haviland", "Snell Roundhand", "Segoe Script", cursive; font-size: 3rem; line-height: 1; color: var(--teal-ink); margin: 0; grid-column: 1 / -1; }
 .footer-meta { color: var(--ink-3); font-size: var(--step--1); margin: 0; }
 .footer-links { list-style: none; display: flex; flex-wrap: wrap; gap: 1.25rem; font-size: var(--step--1); }
 
@@ -384,6 +382,7 @@ body::before {
   .topnav { order: 3; flex-basis: 100%; margin-top: 0.4rem; }
   .topnav ul { gap: 1.1rem; padding-bottom: 0.2rem; }
   html { scroll-padding-top: 6.5rem; }
+  .hero h1 { font-size: clamp(1.75rem, 8vw, 2.4rem); hyphens: auto; -webkit-hyphens: auto; }
   .footer-inner { grid-template-columns: 1fr; }
 }
 

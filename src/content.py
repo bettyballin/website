@@ -23,9 +23,9 @@ DE = {
     "switch_aria": "Switch to English",
     "theme_aria": "Dunkelmodus umschalten",
     "skip": "Zum Inhalt springen",
-    "title": "Bettina Ballin – Softwareentwicklung, Websites und IT-Sicherheit",
+    "title": "Bettina Ballin – Freiberufliche Softwareentwicklung und IT-Sicherheit",
     "description": "Bettina Ballin ist Informatikerin (M.Sc.) und freiberufliche IT-Dienstleisterin: Webentwicklung, Software und Backends, KI-Prototypen, IT-Sicherheit und Datenschutz – aus einer Hand, TÜV-zertifiziert (T.I.S.P.).",
-    "og_description": "Informatikerin und freiberufliche IT-Dienstleisterin. Websites, Software, Backends, KI-Prototypen – plus IT-Sicherheit und Datenschutz aus einer Hand.",
+    "og_description": "Websites, Webanwendungen und Backends – plus Hosting, Sicherheit und Datenschutz. Informatikerin (M.Sc.), TÜV-zertifiziert (T.I.S.P.).",
     "job_title": "Freiberufliche Informatikerin – Softwareentwicklung, Websites, IT-Sicherheit und Datenschutz",
 
     "nav": [
@@ -36,9 +36,9 @@ DE = {
         ("#kontakt", "Kontakt"),
     ],
 
-    "hero_kicker": "Bettina Ballin – Informatikerin (M.Sc.), freiberufliche IT-Dienstleisterin",
-    "hero_title": "Software, Websites, Sicherheit. Aus einer Hand.",
-    "hero_lead": "Ich entwickle Websites, Webanwendungen, Backends und Schnittstellen für Unternehmen, die eine Entwicklerin brauchen, die auch an Betrieb, Sicherheit und Datenschutz denkt. Über fünf Jahre Erfahrung in Softwareentwicklung, Systemintegration und KI-Sicherheitsforschung – und als TÜV-zertifizierte Sicherheitsexpertin (T.I.S.P.) und externe Datenschutzbeauftragte auch alles, was nach dem Launch kommt.",
+    "hero_kicker": "Bettina Ballin",
+    "hero_title": "Freiberufliche Softwareentwicklung und IT-Sicherheit.",
+    "hero_lead": "Ich entwickle Websites, Webanwendungen und Backends und kümmere mich um das, was dazugehört: Hosting, Sicherheit, Datenschutz. Informatikerin (M.Sc., TU Darmstadt), TÜV-zertifiziert (T.I.S.P.).",
     "hero_cta": "Projekt anfragen",
     "hero_cta2": "Leistungen ansehen",
     "hero_photo_alt": "Porträt von Bettina Ballin",
@@ -253,9 +253,9 @@ EN = {
     "switch_aria": "Auf Deutsch wechseln",
     "theme_aria": "Toggle dark mode",
     "skip": "Skip to content",
-    "title": "Bettina Ballin – Software development, websites and IT security",
+    "title": "Bettina Ballin – Freelance software development and IT security",
     "description": "Bettina Ballin is a computer scientist (M.Sc.) and freelance IT professional: web development, software and backends, AI prototypes, IT security and data protection – from one source, TÜV-certified (T.I.S.P.).",
-    "og_description": "Computer scientist and freelance IT professional. Websites, software, backends, AI prototypes – plus IT security and data protection from one source.",
+    "og_description": "Websites, web applications and backends – plus hosting, security and data protection. Computer scientist (M.Sc.), TÜV-certified (T.I.S.P.).",
     "job_title": "Freelance computer scientist – software development, websites, IT security and data protection",
 
     "nav": [
@@ -266,9 +266,9 @@ EN = {
         ("#contact", "Contact"),
     ],
 
-    "hero_kicker": "Bettina Ballin – computer scientist (M.Sc.), freelance IT professional",
-    "hero_title": "Software, websites, security. From one source.",
-    "hero_lead": "I build websites, web applications, backends and integrations for companies that need a developer who also thinks about operations, security and data protection. More than five years in software development, systems integration and AI security research – and as a TÜV-certified security professional (T.I.S.P.) and external data protection officer, everything that comes after launch too.",
+    "hero_kicker": "Bettina Ballin",
+    "hero_title": "Freelance software development and IT security.",
+    "hero_lead": "I build websites, web applications and backends and take care of what comes with them: hosting, security, data protection. Computer scientist (M.Sc., TU Darmstadt), TÜV-certified (T.I.S.P.).",
     "hero_cta": "Request a project",
     "hero_cta2": "See services",
     "hero_photo_alt": "Portrait of Bettina Ballin",
